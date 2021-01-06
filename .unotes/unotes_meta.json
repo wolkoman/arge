@@ -1,0 +1,27 @@
+{
+  "name": "",
+  "isOrdered": true,
+  "folders": {
+    "pages": {
+      "name": "pages",
+      "isOrdered": true,
+      "folders": {},
+      "files": {}
+    },
+    "public": {
+      "name": "public",
+      "isOrdered": true,
+      "folders": {},
+      "files": {}
+    },
+    "styles": {
+      "name": "styles",
+      "isOrdered": true,
+      "folders": {},
+      "files": {}
+    }
+  },
+  "files": {
+    "README": 0
+  }
+}
