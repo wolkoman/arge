@@ -26,12 +26,7 @@ export const Navbar = () => {
         }}
       ></div>
       <Link href="/">
-        <div
-          className={
-            "relative z-20 " +
-            (openMobile ? "text-white" : "text-primary-500 cursor-pointer")
-          }
-        >
+        <div className="relative z-20 text-primary-500 cursor-pointer">
           <div className="text-md opacity-70">Arbeitsgemeinschaft</div>
           <div className="text-xl">Schöpfungsverantwortung</div>
         </div>
@@ -56,13 +51,13 @@ export const Navbar = () => {
       </div>
       <div
         className={
-          "bg-primary-500 absolute top-0 left-0 w-screen z-10 overflow-hidden box-border text-white text-4xl underline " +
+          "bg-white absolute top-0 left-0 w-screen z-10 overflow-hidden box-border text-primary-500 text-4xl underline " +
           (openMobile ? "h-screen pt-32 px-8" : "h-0")
         }
       >
         {items.map((item, index) => (
           <Link href={item.page} key={index}>
-            <div key={index} className={" text-white p-3"}>
+            <div key={index} className={" text-primary-500 p-3"}>
               {item.label}
             </div>
           </Link>
@@ -77,24 +72,21 @@ const Hamburger = ({ onClick, open }) => {
     <div className="md:hidden cursor-pointer relative z-20" onClick={onClick}>
       <div
         className={
-          "relative w-6 h-1  transform " +
-          (open ? "rotate-45 top-2 bg-white" : "top-0 rotate-0 bg-primary-500")
+          "relative w-6 h-1  transform bg-primary-500 " +
+          (open ? "rotate-45 top-2" : "top-0 rotate-0")
         }
       />
       <div className={"relative w-6 h-1"} />
       <div
         className={
-          "relative w-6 h-1 " +
-          (open ? "opacity-0 bg-white" : " bg-primary-500")
+          "relative w-6 h-1 bg-primary-500 " + (open ? "opacity-0" : "")
         }
       />
       <div className={"relative w-6 h-1"} />
       <div
         className={
-          "relative w-6 h-1 transform " +
-          (open
-            ? "-rotate-45 -top-2 bg-white"
-            : "rotate-0 top-0 bg-primary-500")
+          "relative w-6 h-1 transform bg-primary-500 " +
+          (open ? "-rotate-45 -top-2" : "rotate-0 top-0")
         }
       />
     </div>

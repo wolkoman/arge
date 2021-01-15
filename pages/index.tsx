@@ -62,11 +62,11 @@ export async function getStaticProps(context) {
 
 const Title = () => (
   <div>
-    <div className="flex flex-row w-full h-3xl">
-      <div className="max-w-7xl flex-0 w-2/3 relative -top-24">
+    <div className="flex flex-col md:flex-row w-full h-6xl md:h-3xl">
+      <div className="max-w-7xl flex-0 md:w-2/3 w-full relative -top-24">
         <img className="w-full" src="assets/cbanner.png" />
       </div>
-      <div className="flex flex-col p-6 leading-10 justify-center h-full -left-24 relative font-bold">
+      <div className="flex flex-col p-6 leading-10 justify-center h-full -top-24 md:top-0 md:-left-24 relative font-bold">
         <div className="text-6xl text-primary-500">
           Spinnen wir den Faden weiter
         </div>
