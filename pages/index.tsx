@@ -5,22 +5,18 @@ import { ColumnLayout } from "../components/ColumnLayout";
 import { Footer } from "../components/Footer";
 import { Navbar } from "../components/Navbar";
 import { Responsive } from "../components/Responsive";
+import { Site } from "../components/Site";
 
 export default function Home({ data }) {
   return (
-    <div className="min-h-screen bg-primary-50">
-      <Head>
-        <title>ARGE Schöpfungsverantwortung</title>
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
-      <Navbar />
+    <Site responsive={false}>
       <Title />
       <Responsive>
         <ColumnLayout>
           <div className="mr-4 p-4 rounded-md bg-white"></div>
           <div className="p-4">
             {data.entries.map(entry => (
-              <div className="py-6">
+              <div className="py-6" key={entry._id}>
                 <div className="text-2xl py-2 font-bold">{entry.title}</div>
                 <ReactMarkdown
                   renderers={{
@@ -41,10 +37,8 @@ export default function Home({ data }) {
             ))}
           </div>
         </ColumnLayout>
-        <Footer />
       </Responsive>
-      <div className="container mx-auto max-w-4xl"></div>
-    </div>
+    </Site>
   );
 }
 

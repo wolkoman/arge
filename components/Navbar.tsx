@@ -1,20 +1,30 @@
 import { useState } from "react";
 import Link from "next/link";
+import { useScrollPosition } from "@n8tb1t/use-scroll-position";
 
 export const Navbar = () => {
   const [openMobile, setOpenMobile] = useState(false);
+  const [floating, setFloating] = useState(false);
   const items = [
     { label: "Über uns", page: "ueber-uns" },
     { label: "Themen", page: "themen" },
     { label: "Schöpfungszeit", page: "schoepfungszeit" },
     { label: "Spenden", page: "spenden" },
   ];
+
+  useScrollPosition(({ currPos }) => {
+    setFloating(currPos.y !== 0);
+  });
+
   return (
-    <div
-      className={
-        "bg-primary-50 p-5 px-7 font-medium leading-4 flex flex-row justify-between items-center font-bold"
-      }
-    >
+    <div className="sticky top-0 w-full z-20 p-5 px-7 leading-4 flex flex-row justify-between items-center font-bold">
+      <div
+        className="absolute top-0 left-0 w-full bg-white"
+        style={{
+          height: floating ? "84px" : "0px",
+          transition: "0.2s all linear 0s",
+        }}
+      ></div>
       <Link href="/">
         <div
           className={
@@ -27,9 +37,9 @@ export const Navbar = () => {
         </div>
       </Link>
       <Hamburger onClick={() => setOpenMobile(!openMobile)} open={openMobile} />
-      <div className="hidden flex-row md:flex text-primary-500">
+      <div className="hidden flex-row md:flex text-primary-500 z-10">
         {items.map((item, index) => (
-          <Link href={item.page}>
+          <Link href={item.page} key={item.page}>
             <div
               key={index}
               className={
@@ -51,7 +61,7 @@ export const Navbar = () => {
         }
       >
         {items.map((item, index) => (
-          <Link href={item.page}>
+          <Link href={item.page} key={index}>
             <div key={index} className={" text-white p-3"}>
               {item.label}
             </div>

@@ -9,6 +9,7 @@
     "export": "next export"
   },
   "dependencies": {
+    "@n8tb1t/use-scroll-position": "^2.0.3",
     "autoprefixer": "^10.0.4",
     "next": "10.0.3",
     "postcss": "^8.1.14",
