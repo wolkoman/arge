@@ -2,6 +2,7 @@ import Head from "next/head";
 import React from "react";
 import ReactMarkdown from "react-markdown";
 import { ColumnLayout } from "../components/ColumnLayout";
+import { Footer } from "../components/Footer";
 import { Navbar } from "../components/Navbar";
 import { Responsive } from "../components/Responsive";
 
@@ -24,7 +25,10 @@ export default function Home({ data }) {
                 <ReactMarkdown
                   renderers={{
                     strong: value => (
-                      <span className="font-bold" children={value.children} />
+                      <span
+                        className="font-bold text-pink-600"
+                        children={value.children}
+                      />
                     ),
                     emphasis: value => (
                       <span className="italic" children={value.children} />
@@ -37,6 +41,7 @@ export default function Home({ data }) {
             ))}
           </div>
         </ColumnLayout>
+        <Footer />
       </Responsive>
       <div className="container mx-auto max-w-4xl"></div>
     </div>

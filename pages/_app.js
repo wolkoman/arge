@@ -1,4 +1,4 @@
-import "../styles/globals.css";
+import "../styles/tailwind.css";
 
 function ArgeSchoepfungApp({ Component, pageProps }) {
   return <Component {...pageProps} />;
