@@ -5,10 +5,11 @@ import { Responsive } from "../components/Responsive";
 import { Site } from "../components/Site";
 import { cockpitHost, fetchCollection, fetchSingleton } from "../util/cockpit";
 
-export default function Home({ articles, pictures }) {
+export default function Home({ articles, pictures, test }) {
   return (
     <Site responsive={false}>
       <Title />
+      {test}
       <Responsive>
         <ColumnLayout>
           <div className="mr-4 p-4 rounded-md bg-white">

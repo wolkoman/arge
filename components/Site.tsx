@@ -12,7 +12,7 @@ export const Site = ({
   responsive?: boolean;
 }) => {
   return (
-    <div className="min-h-screen bg-primary-50">
+    <div className="min-h-screen bg-primary-50 flex flex-col">
       <Head>
         <title>ARGE Schöpfungsverantwortung</title>
         <link rel="icon" href="/favicon.ico" />

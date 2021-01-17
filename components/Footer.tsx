@@ -1,6 +1,6 @@
 export const Footer = ({}) => {
   return (
-    <div className="flex flex-col md:flex-row py-8 px-8">
+    <div className="flex flex-col md:flex-row py-8 px-8 mt-auto">
       <div className="flex-1 py-8">
         <div className="font-bold text-xl">Kontakt</div>
         Arbeitsgemeinschaft Schöpfungsverantwortung Peterskirche - Petersplatz
