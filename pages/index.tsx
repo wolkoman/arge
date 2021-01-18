@@ -13,11 +13,12 @@ export default function Home({ articles, pictures, test }) {
       <Responsive>
         <ColumnLayout>
           <div className="mr-4 p-4 rounded-md bg-white">
-            {pictures.gallery.map(({ path }) => (
+            {pictures.map(({ path, meta }) => (
               <img
-                src={`${cockpitHost}/${path}`}
+                src={path}
                 key={path}
                 className="mb-4 rounded"
+                alt={meta.title}
               />
             ))}
           </div>
@@ -52,10 +53,15 @@ export default function Home({ articles, pictures, test }) {
 export async function getStaticProps(context) {
   const articles = await fetchCollection("article");
   const pictures = await fetchSingleton("frontpage_pictures");
-
   return articles
     ? {
-        props: { articles, pictures },
+        props: {
+          articles,
+          pictures: pictures.gallery.map(picture => ({
+            ...picture,
+            path: `${cockpitHost}/${picture.path}`,
+          })),
+        },
       }
     : {
         notFound: true,
