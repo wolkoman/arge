@@ -9,8 +9,10 @@
     "export": "next export"
   },
   "dependencies": {
+    "@aws-sdk/client-s3": "^3.3.0",
     "@n8tb1t/use-scroll-position": "^2.0.3",
     "autoprefixer": "^10.0.4",
+    "aws-sdk": "^2.828.0",
     "next": "10.0.3",
     "postcss": "^8.1.14",
     "react": "17.0.1",

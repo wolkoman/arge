@@ -20,12 +20,7 @@ export default function Login() {
           className="grid gap-2"
           style={{ gridTemplate: "1fr 1fr / 140px 200px" }}
         >
-          {Object.entries(user)
-            .map(([name, value]) => [
-              <div key={name}>{name}</div>,
-              <div key={name + "#"}>{value}</div>,
-            ])
-            .flat()}
+          {JSON.stringify(user)}
         </div>
       ) : (
         <div className="flex flex-col items-center my-20">

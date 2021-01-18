@@ -1,4 +1,3 @@
-import { Http2SecureServer } from "http2";
 import { NextApiRequest, NextApiResponse } from "next";
 import { authenticateCockpit } from "../../util/cockpit";
 
