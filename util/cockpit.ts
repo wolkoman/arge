@@ -8,15 +8,16 @@ interface CockpitUser {
   api_key: string;
 }
 
-export const fetchCockpit = async (type: string, name: string) => {
-  const params = {
+export const fetchCockpit = async (type: string, name: string, params = {}) => {
+  params = {
     token: cockpitApiKey,
+    ...params
   };
   return await fetch(
     `${cockpitHost}/api/${type}/get/${name}?${Object.entries(params)
       .map(([name, value]) => `${name}=${value}`)
       .join("&")}`
-  ).then(response => response.json());
+  ).then(response => response.json()).then(data => data.entries);
 };
 export const fetchCollection = (name: string) =>
   fetchCockpit("collections", name);

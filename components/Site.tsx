@@ -18,7 +18,7 @@ export const Site = ({
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Navbar />
-      {responsive ? <Responsive>{children}</Responsive> : children}
+      {responsive ? <div className="my-8"><Responsive>{children}</Responsive></div> : children}
       <div className="bg-white">
         <Responsive>
           <Footer />
