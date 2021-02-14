@@ -7,7 +7,7 @@ import {cockpitHost, fetchCollection} from '../util/cockpit';
 import {renderer} from '../util/markdownRenderer';
 import {encodeSlug} from '../util/slug';
 
-export default function Home({articles}) {
+export default function Home({articles, cockpitHost}) {
   return (
     <Site responsive={false}>
       <Title/>
@@ -35,11 +35,12 @@ export default function Home({articles}) {
   );
 }
 
-export async function getStaticProps(context) {
+export async function getStaticProps() {
   const articles = await fetchCollection('article');
   return {
     props: {
-      articles
+      articles,
+      cockpitHost
     },
   };
 }

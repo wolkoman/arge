@@ -17,10 +17,10 @@ export const fetchCockpit = async (type: string, name: string, params = {}) => {
     `${cockpitHost}/api/${type}/get/${name}?${Object.entries(params)
       .map(([name, value]) => `${name}=${value}`)
       .join("&")}`
-  ).then(response => response.json()).then(data => data.entries);
+  ).then(response => response.json());
 };
 export const fetchCollection = (name: string) =>
-  fetchCockpit("collections", name);
+  fetchCockpit("collections", name).then(data => data.entries);
 export const fetchSingleton = (name: string) =>
   fetchCockpit("singletons", name);
 
