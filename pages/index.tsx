@@ -13,24 +13,30 @@ export default function Home({articles, cockpitHost}) {
       <Title/>
       <img src="assets/Artboard 2@2x.png" className="absolute right-0 mt-80"/>
       <Responsive>
-        {articles.map((entry, i) => (
-          <div className={`py-8 flex flex-col md:flex-row ${i % 2 === 0 ? '' : 'md:flex-row-reverse'}`} key={entry._id}>
-            <div className={`md:w-1/3 ${i % 2 === 0 ? 'mr-4' : 'ml-4'} md:h-64 h-64`}>
-              <div className="w-full h-full border border-primary-500 rounded" style={{
-                backgroundImage: `url(${cockpitHost}/${entry.image.path})`,
-                backgroundSize: 'cover',
-                backgroundPosition: '50% 50%'
-              }}/>
+        {articles.map((entry, i) => {
+          const link = `/artikel/${encodeSlug(entry.title)}`;
+          return (
+            <div className={`py-8 flex flex-col md:flex-row ${i % 2 === 0 ? '' : 'md:flex-row-reverse'}`}
+                 key={entry._id}>
+              <div className={`md:w-1/3 ${i % 2 === 0 ? 'mr-4' : 'ml-4'} md:h-64 h-64`}>
+                <div className="w-full h-full border border-primary-500 rounded" style={{
+                  backgroundImage: `url(${cockpitHost}/${entry.image.path})`,
+                  backgroundSize: 'cover',
+                  backgroundPosition: '50% 50%'
+                }}/>
+              </div>
+              <div className="md:w-2/3">
+                <Link href={link}>
+                  <div className="text-2xl py-2 font-bold cursor-pointer">{entry.title}</div>
+                </Link>
+                <ReactMarkdown renderers={renderer} children={entry.preview}/>
+                <Link href={link}>
+                  <div className="underline hover:no-underline cursor-pointer mt-2 text-primary-500">Weiterlesen</div>
+                </Link>
+              </div>
             </div>
-            <div className="md:w-2/3">
-              <div className="text-2xl py-2 font-bold">{entry.title}</div>
-              <ReactMarkdown renderers={renderer} children={entry.preview}/>
-              <Link href={`/artikel/${encodeSlug(entry.title)}`}>
-                <div className="underline hover:no-underline cursor-pointer mt-2 text-primary-500">Weiterlesen</div>
-              </Link>
-            </div>
-          </div>
-        ))}
+          );
+        })}
       </Responsive>
     </Site>
   );

@@ -5,9 +5,12 @@ import {cockpitHost, fetchCollection} from '../../util/cockpit';
 import {encodeSlug} from '../../util/slug';
 import ReactMarkdown from 'react-markdown';
 import {renderer} from '../../util/markdownRenderer';
+import {Breadcrums} from '../../components/Breadcrums';
 
-export default function Index({cockpitHost, topic, children}) {
+export default function Index({cockpitHost, topic, children, parents}) {
   return <Site>
+    <Breadcrums
+      crums={[{name: 'Themen', link: '/themen'}, ...parents, {name: topic.title}]}/>
     <div className="text-5xl font-bold mb-6">{topic.title}</div>
     <div className="flex flex-col-reverse md:flex-row">
       {children.length === 0 ? null : <div style={{flex: 1}}>
@@ -44,9 +47,18 @@ export async function getStaticProps({params}) {
   const topics = await fetchCollection('topics');
   const slug = params.thema.reverse()[0];
   const topic = topics.find(topic => encodeSlug(topic.title) === slug);
-  const children = topics.filter(t => t.category?._id === topic._id).map(t => ({
-    slug: encodeSlug(t.title),
-    title: t.title
-  }));
-  return {props: {cockpitHost, topic, children}}
+  const children = topics
+    .filter(t => t.category?._id === topic._id)
+    .map(t => ({
+      slug: encodeSlug(t.title),
+      title: t.title
+    }));
+  const parents = [];
+  let topicItem = topic;
+  while(topicItem.category?._id){
+    console.log(topicItem.title);
+    topicItem = topics.find(t => t._id === topicItem.category._id);
+    parents.push({name: topicItem.title, link: `/themen/${encodeSlug(topicItem.title)}`})
+  }
+  return {props: {cockpitHost, topic, children, parents}}
 }

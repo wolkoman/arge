@@ -4,9 +4,11 @@ import {Site} from '../../components/Site';
 import React from 'react';
 import ReactMarkdown from 'react-markdown';
 import {renderer} from '../../util/markdownRenderer';
+import {Breadcrums} from '../../components/Breadcrums';
 
 export default function Article({article}) {
   return <Site>
+    <Breadcrums crums={[{name: "Startseite", link: "/"}, {name: article.title, link: `/artikel/${encodeSlug(article.title)}`}]}/>
     <div className="text-5xl font-bold mb-6">{article.title}</div>
     <ReactMarkdown renderers={renderer} children={article.content}/>
   </Site>;
