@@ -19,8 +19,8 @@ export const fetchCockpit = async (type: string, name: string, params = {}) => {
       .join("&")}`
   ).then(response => response.json());
 };
-export const fetchCollection = (name: string) =>
-  fetchCockpit("collections", name).then(data => data.entries);
+export const fetchCollection = (name: string, params?: Record<string, string>) =>
+  fetchCockpit("collections", name, params).then(data => data.entries);
 export const fetchSingleton = (name: string) =>
   fetchCockpit("singletons", name);
 

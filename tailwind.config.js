@@ -13,6 +13,9 @@ module.exports = {
   darkMode: false,
   theme: {
     extend: {
+      screens: {
+        print: {'raw': 'print'}
+      },
       colors: {
         primary: {
           default: "#167AAC",

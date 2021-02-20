@@ -6,10 +6,10 @@ export const Navbar = () => {
   const [openMobile, setOpenMobile] = useState(false);
   const [floating, setFloating] = useState(false);
   const items = [
-    { label: "Über uns", page: "ueber-uns" },
-    { label: "Themen", page: "themen" },
-    { label: "Schöpfungszeit", page: "schoepfungszeit" },
-    { label: "Spenden", page: "spenden" },
+    { label: "Über uns", page: "/ueber-uns" },
+    { label: "Themen", page: "/themen" },
+    { label: "Schöpfungszeit", page: "/schoepfungszeit" },
+    { label: "Spenden", page: "/spenden" },
   ];
 
   useScrollPosition(({ currPos }) => {
@@ -17,7 +17,7 @@ export const Navbar = () => {
   });
 
   return (
-    <div className="sticky top-0 w-full z-20 p-5 px-7 leading-4 flex flex-row justify-between items-center font-bold">
+    <div className="sticky top-0 w-full z-20 p-5 px-7 leading-4 flex flex-row justify-between items-center font-bold print:hidden">
       <div
         className="absolute top-0 left-0 w-full bg-white"
         style={{
