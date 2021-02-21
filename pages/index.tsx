@@ -1,11 +1,12 @@
 import Link from 'next/link';
-import React from 'react';
+import React, {useState} from 'react';
 import ReactMarkdown from 'react-markdown';
 import {Responsive} from '../components/Responsive';
 import {Site} from '../components/Site';
 import {cockpitHost, fetchCollection} from '../util/cockpit';
 import {renderer} from '../util/markdownRenderer';
 import {encodeSlug} from '../util/slug';
+import { Viewport } from 'react-is-in-viewport';
 
 export default function Home({articles, cockpitHost}) {
   return (
@@ -19,11 +20,7 @@ export default function Home({articles, cockpitHost}) {
             <div className={`py-8 flex flex-col md:flex-row ${i % 2 === 0 ? '' : 'md:flex-row-reverse'}`}
                  key={entry._id}>
               <div className={`md:w-1/3 ${i % 2 === 0 ? 'mr-4' : 'ml-4'} md:h-64 h-64`}>
-                <div className="w-full h-full border border-primary-500 rounded" style={{
-                  backgroundImage: `url(${cockpitHost}/${entry.image.path})`,
-                  backgroundSize: 'cover',
-                  backgroundPosition: '50% 50%'
-                }}/>
+                <Image path={cockpitHost + entry.image.path}/>
               </div>
               <div className="md:w-2/3">
                 <Link href={link}>
@@ -67,3 +64,25 @@ const Title = () => (
     </div>
   </div>
 );
+
+const Image = ({path}) => {
+  const [active, setActive] = useState(false);
+  return (
+    <Viewport
+      type="fit"
+      className="w-full h-full border border-primary-500 rounded relative overflow-hidden"
+      onEnter={() => {
+        setActive(true);
+      }}
+      onLeave={() => {
+        setActive(false);
+      }}>
+        <div className={`absolute top-0 left-0 w-full h-full transition-all duration-500 ${active ? 'top-0' : '-top-64'}`} style={{
+          backgroundImage: `url(${path})`,
+          backgroundSize: 'cover',
+          backgroundPosition: '50% 50%'
+        }}></div>
+        <div className={`absolute left-0 w-full h-full bg-primary-500 transition-all duration-500 ${active ? 'top-64' : 'top-0'}`}/>
+    </Viewport>
+  );
+}
