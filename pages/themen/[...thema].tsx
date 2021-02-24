@@ -17,7 +17,7 @@ export default function Index({cockpitHost, topic, children, parents}) {
     })), {name: topic.title}]}/>
     <div className="text-5xl font-bold mb-6">{topic.title}</div>
     <div className="flex flex-col-reverse md:flex-row">
-      {children.length === 0 ? null : <div style={{flex: 1}}>
+      {(children.length === 0 || topic.files?.length) ? null : <div style={{flex: 1}}>
         {children.length ?
           <div className="bg-white p-6 rounded-lg mr-6 mb-4">
             <div className="mb-1 font-bold">Unterseiten</div>
