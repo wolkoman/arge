@@ -6,7 +6,6 @@ import {Site} from '../components/Site';
 import {cockpitHost, fetchCollection} from '../util/cockpit';
 import {renderer} from '../util/markdownRenderer';
 import {encodeSlug} from '../util/slug';
-import { Viewport } from 'react-is-in-viewport';
 import {getCategoryUrl} from './themen/[...thema]';
 
 export default function Home({articles, cockpitHost, topics}) {
@@ -16,7 +15,7 @@ export default function Home({articles, cockpitHost, topics}) {
       <img src="assets/Artboard 2@2x.png" className="absolute right-0 mt-80"/>
       <Responsive>
         {articles.map((entry, i) => {
-          const link = entry.content[0].field?.name === "content" ? `/artikel/${encodeSlug(entry.title)}` : `/themen/${getCategoryUrl(topics.find(t => t._id === entry.content[0].value._id), topics).join("/")}`;
+          const link = entry.content[0].field?.name === 'content' ? `/artikel/${encodeSlug(entry.title)}` : `/themen/${getCategoryUrl(topics.find(t => t._id === entry.content[0].value._id), topics).join('/')}`;
           return (
             <div className={`py-8 flex flex-col md:flex-row ${i % 2 === 0 ? '' : 'md:flex-row-reverse'}`}
                  key={entry._id}>
@@ -69,23 +68,12 @@ const Title = () => (
 );
 
 const Image = ({path}) => {
-  const [active, setActive] = useState(false);
   return (
-    <Viewport
-      type="fit"
-      className="w-full h-full border border-primary-500 rounded relative overflow-hidden"
-      onEnter={() => {
-        setActive(true);
-      }}
-      onLeave={() => {
-        setActive(false);
-      }}>
-        <div className={`absolute top-0 left-0 w-full h-full transition-all duration-500 ${active ? 'top-0' : '-top-64'}`} style={{
-          backgroundImage: `url(${path})`,
-          backgroundSize: 'cover',
-          backgroundPosition: '50% 50%'
-        }}></div>
-        <div className={`absolute left-0 w-full h-full bg-primary-500 transition-all duration-500 ${active ? 'top-64' : 'top-0'}`}/>
-    </Viewport>
+    <div className="w-full h-full rounded border border-primary-400"
+         style={{
+           backgroundImage: `url(${path})`,
+           backgroundSize: 'cover',
+           backgroundPosition: '50% 50%'
+         }}></div>
   );
 }
