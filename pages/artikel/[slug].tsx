@@ -10,7 +10,7 @@ export default function Article({article}) {
   return <Site>
     <Breadcrums crums={[{name: "Startseite", link: "/"}, {name: article.title, link: `/artikel/${encodeSlug(article.title)}`}]}/>
     <div className="text-5xl font-bold mb-6">{article.title}</div>
-    <ReactMarkdown renderers={renderer} children={article.content}/>
+    <ReactMarkdown renderers={renderer} children={article.content[0].value}/>
   </Site>;
 }
 

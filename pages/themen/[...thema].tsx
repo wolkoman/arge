@@ -17,7 +17,7 @@ export default function Index({cockpitHost, topic, children, parents}) {
     })), {name: topic.title}]}/>
     <div className="text-5xl font-bold mb-6">{topic.title}</div>
     <div className="flex flex-col-reverse md:flex-row">
-      {(children.length === 0 || topic.files?.length) ? null : <div style={{flex: 1}}>
+      {(children.length == 0 && (topic.files?.length == 0 || topic.files == undefined)) ? null : <div style={{flex: 1}}>
         {children.length ?
           <div className="bg-white p-6 rounded-lg mr-6 mb-4">
             <div className="mb-1 font-bold">Unterseiten</div>
@@ -40,11 +40,11 @@ export default function Index({cockpitHost, topic, children, parents}) {
   </Site>;
 }
 
-const getUrl = (topic, topics) => [...(topic.category ? getUrl(topics.find(t => t._id === topic.category._id), topics) : []), encodeSlug(topic.title)];
+export const getCategoryUrl = (topic, topics) => [...(topic.category ? getCategoryUrl(topics.find(t => t._id === topic.category._id), topics) : []), encodeSlug(topic.title)];
 
 export async function getStaticPaths() {
   const topics = (await fetchCollection('topics'));
-  const urls = topics.map(topic => getUrl(topic, topics));
+  const urls = topics.map(topic => getCategoryUrl(topic, topics));
   return {paths: urls.map(url => ({params: {thema: url}})), fallback: false};
 }
 
@@ -62,7 +62,7 @@ export async function getStaticProps({params}) {
   let topicItem = topic;
   while (topicItem.category?._id) {
     topicItem = topics.find(t => t._id === topicItem.category._id);
-    parents.unshift({name: topicItem.title, segments: getUrl(topicItem, topics)})
+    parents.unshift({name: topicItem.title, segments: getCategoryUrl(topicItem, topics)})
   }
   return {props: {cockpitHost, topic, children, parents}}
 }

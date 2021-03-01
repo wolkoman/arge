@@ -7,15 +7,16 @@ import {cockpitHost, fetchCollection} from '../util/cockpit';
 import {renderer} from '../util/markdownRenderer';
 import {encodeSlug} from '../util/slug';
 import { Viewport } from 'react-is-in-viewport';
+import {getCategoryUrl} from './themen/[...thema]';
 
-export default function Home({articles, cockpitHost}) {
+export default function Home({articles, cockpitHost, topics}) {
   return (
     <Site responsive={false}>
       <Title/>
       <img src="assets/Artboard 2@2x.png" className="absolute right-0 mt-80"/>
       <Responsive>
         {articles.map((entry, i) => {
-          const link = `/artikel/${encodeSlug(entry.title)}`;
+          const link = entry.content[0].field?.name === "content" ? `/artikel/${encodeSlug(entry.title)}` : `/themen/${getCategoryUrl(topics.find(t => t._id === entry.content[0].value._id), topics).join("/")}`;
           return (
             <div className={`py-8 flex flex-col md:flex-row ${i % 2 === 0 ? '' : 'md:flex-row-reverse'}`}
                  key={entry._id}>
@@ -41,9 +42,11 @@ export default function Home({articles, cockpitHost}) {
 
 export async function getStaticProps() {
   const articles = await fetchCollection('article');
+  const topics = await fetchCollection('topics');
   return {
     props: {
       articles,
+      topics,
       cockpitHost
     },
   };
