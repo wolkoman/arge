@@ -55,6 +55,11 @@ export const Navbar = () => {
           (openMobile ? "h-screen pt-32 px-8" : "h-0")
         }
       >
+        <Link href="/">
+          <div className={" text-primary-500 p-3"}>
+            Startseite
+          </div>
+        </Link>
         {items.map((item, index) => (
           <Link href={item.page} key={index}>
             <div key={index} className={" text-primary-500 p-3"}>
