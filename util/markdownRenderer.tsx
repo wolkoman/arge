@@ -7,6 +7,8 @@ export const renderer = {
   children={value.children}
   />
 ),
+  link: value => (
+    <a href={value.href} className="text-blue-600 underline hover:no-underline">{value.children}</a>),
   image: value => (
     <img className="rounded border-primary-400 border m-2 max-h-80" src={value.src} />),
   paragraph: value => (

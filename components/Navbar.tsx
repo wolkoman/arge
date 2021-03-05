@@ -8,7 +8,7 @@ export const Navbar = () => {
   const items = [
     { label: "Über uns", page: "/ueber-uns" },
     { label: "Themen", page: "/themen" },
-    { label: "Schöpfungszeit", page: "/schoepfungszeit" },
+    { label: "Newsletter", page: "/newsletter" },
     { label: "Spenden", page: "/spenden" },
   ];
 

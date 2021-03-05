@@ -4,13 +4,13 @@ import ReactMarkdown from 'react-markdown';
 import {renderer} from '../util/markdownRenderer';
 import {fetchSingleton} from '../util/cockpit';
 
-export default function Schoepfungszeit({article}) {
+export default function Newsletter({article}) {
   return <Site>
-    <div className="text-5xl font-bold mb-6">Schöpfungszeit</div>
+    <div className="text-5xl font-bold mb-6">Newsletter</div>
     <ReactMarkdown renderers={renderer} children={article.content}/>
   </Site>;
 }
 
 export async function getStaticProps() {
-  return {props: {article: await fetchSingleton('schoepfungszeit')}}
+  return {props: {article: await fetchSingleton('newsletter')}}
 }
