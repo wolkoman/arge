@@ -6,7 +6,7 @@ import {fetchSingleton} from '../util/cockpit';
 
 export default function UeberUns({article}) {
   return <Site>
-    <div className="text-5xl font-bold mb-6">Über uns</div>
+    <div className="text-5xl font-bold mb-6 text-primary-500">Über uns</div>
     <ReactMarkdown renderers={renderer} children={article.content}/>
   </Site>;
 }

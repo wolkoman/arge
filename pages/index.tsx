@@ -28,7 +28,7 @@ export default function Home({articles, cockpitHost, topics}) {
                 </Link>
                 <ReactMarkdown renderers={renderer} children={entry.preview}/>
                 <Link href={link}>
-                  <div className="underline hover:no-underline cursor-pointer mt-2 text-primary-500">Weiterlesen</div>
+                  <div className="underline hover:no-underline cursor-pointer mt-2 text-blue-600">Weiterlesen</div>
                 </Link>
               </div>
             </div>

@@ -3,10 +3,9 @@ const colors = require("tailwindcss/colors");
 module.exports = {
   purge: {
     content: [
-      "./pages/**/*.js",
-      "./components/**/*.js",
       "./pages/**/*.tsx",
       "./components/**/*.tsx",
+      "./util/markdownRenderer.tsx",
     ],
     options: { whitelist: [] },
   },
@@ -30,7 +29,7 @@ module.exports = {
           800: "#051A24",
           900: "#000000",
         },
-        secondary: { default: "#cd309a" },
+        secondary: { default: "#94464D" },
       },
       height: {
         xl: "200px",

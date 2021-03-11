@@ -6,7 +6,7 @@ import {fetchSingleton} from '../util/cockpit';
 
 export default function Newsletter({article}) {
   return <Site>
-    <div className="text-5xl font-bold mb-6">Newsletter</div>
+    <div className="text-5xl font-bold mb-6 text-primary-500">Newsletter</div>
     <ReactMarkdown renderers={renderer} children={article.content}/>
   </Site>;
 }

@@ -6,7 +6,7 @@ import {fetchSingleton} from '../util/cockpit';
 
 export default function Spenden({article}) {
   return <Site>
-    <div className="text-5xl font-bold mb-6">Spenden</div>
+    <div className="text-5xl font-bold mb-6 text-primary-500">Spenden</div>
     <ReactMarkdown renderers={renderer} children={article.content}/>
   </Site>;
 }

@@ -15,21 +15,21 @@ export default function Index({cockpitHost, topic, children, parents}) {
       name,
       link: `/themen/${segments.join('/')}`
     })), {name: topic.title}]}/>
-    <div className="text-5xl font-bold mb-6">{topic.title}</div>
+    <div className="text-5xl font-bold mb-6 text-primary-500">{topic.title}</div>
     <div className="flex flex-col-reverse md:flex-row">
       {(children.length == 0 && (topic.files?.length == 0 || topic.files == undefined)) ? null : <div style={{flex: 1}}>
         {children.length ?
           <div className="bg-white p-6 rounded-lg mr-6 mb-4">
             <div className="mb-1 font-bold">Unterseiten</div>
             {children.map(child => <Link href={`${router.asPath}/${child.slug}`} key={child.slug}>
-              <div className="cursor-pointer underline hover:no-underline">{child.title}</div>
+              <div className="cursor-pointer underline hover:no-underline text-blue-600 my-2">{child.title}</div>
             </Link>)}
           </div> : null}
         {topic.files?.length ?
           <div className="bg-white p-6 rounded-lg mr-6">
             <div className="mb-1 font-bold">Downloads</div>
             {topic.files?.map(({value}) => <Link href={`${cockpitHost}/storage/uploads${value.path}`} key={value.path}>
-              <div className="cursor-pointer underline hover:no-underline">{value.title}</div>
+              <div className="cursor-pointer underline hover:no-underline text-blue-600 my-2">{value.title}</div>
             </Link>)}
           </div> : null}
       </div>}

@@ -6,7 +6,7 @@ import {encodeSlug} from '../../util/slug';
 
 export default function Index({topics, cockpitHost}) {
   return <Site>
-    <div className="text-5xl font-bold mb-12">Themen</div>
+    <div className="text-5xl font-bold mb-12 text-primary-500">Themen</div>
     <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
       {topics.map(topic =>
         <Link href={`themen/${encodeSlug(topic.title)}`} key={topic._id}>
