@@ -8,6 +8,9 @@ export default function Newsletter({article}) {
   return <Site>
     <div className="text-5xl font-bold mb-6 text-primary-500">Newsletter</div>
     <ReactMarkdown renderers={renderer} children={article.content}/>
+    <iframe className="mj-w-res-iframe" frameBorder="0" scrolling="no"
+  src="https://app.mailjet.com/widget/iframe/6CzS/Ijs" width="100%" height="600"/>
+    <script type="text/javascript" src="https://app.mailjet.com/statics/js/iframeResizer.min.js"/>
   </Site>;
 }
 
