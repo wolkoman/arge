@@ -11,7 +11,7 @@ export default function Index({topics, cockpitHost}) {
       {topics.map(topic =>
         <Link href={`themen/${encodeSlug(topic.title)}`} key={topic._id}>
           <div key={topic._id} style={{
-            backgroundImage: `url(${cockpitHost}/${topic.image.path})`,
+            backgroundImage: `url(${cockpitHost}/${topic.image?.path})`,
             backgroundSize: 'cover',
             backgroundPosition: '50% 50%',
           }}

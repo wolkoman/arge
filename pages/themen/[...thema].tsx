@@ -28,9 +28,9 @@ export default function Index({cockpitHost, topic, children, parents}) {
         {topic.files?.length ?
           <div className="bg-white p-6 rounded-lg mr-6">
             <div className="mb-1 font-bold">Downloads</div>
-            {topic.files?.map(({value}) => <Link href={`${cockpitHost}/storage/uploads${value.path}`} key={value.path}>
-              <div className="cursor-pointer underline hover:no-underline text-blue-600 my-2">{value.title}</div>
-            </Link>)}
+            {topic.files?.map(({value}) => value?.path ? <Link href={`${cockpitHost}/storage/uploads${value?.path}`} key={value?.path}>
+              <div className="cursor-pointer underline hover:no-underline text-blue-600 my-2">{value?.title}</div>
+            </Link> : <div>Leerer Download</div>)}
           </div> : null}
       </div>}
       <div style={{flex: 2}}>
