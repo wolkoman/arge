@@ -6,7 +6,7 @@ export const Navbar = () => {
   const [openMobile, setOpenMobile] = useState(false);
   const [floating, setFloating] = useState(false);
   const items = [
-    { label: "Über uns", page: "/ueber-uns" },
+    { label: "Über uns", page: "/ueber-uns/ueber-uns" },
     { label: "Themen", page: "/themen" },
     { label: "Newsletter", page: "/newsletter" },
     { label: "Spenden", page: "/spenden" },

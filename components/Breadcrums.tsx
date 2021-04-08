@@ -1,10 +1,13 @@
 import Link from 'next/link'
 import React from 'react'
 
-export const Breadcrums = ({crums}: { crums: { name: string, link?: string }[] }) => {
+export interface Crum{ name: string, link?: string }
+export const Breadcrums = ({crums}: { crums: Crum[] }) => {
   return (
     <div className="flex flex-row opacity-70 mb-2">
-      {crums.map((crum, i) => crum.link
+      {crums
+        .filter(crum => crum.name)
+        .map((crum, i) => crum.link
         ? <Link key={crum.link} href={crum.link} children={<div><Crum name={crum.name} arrow={i !== 0} hoverable={true}/></div>}/>
         : <Crum key={crum.link} name={crum.name} arrow={i !== 0}/>)}
     </div>

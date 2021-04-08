@@ -6,16 +6,18 @@ import {Site} from '../components/Site';
 import {cockpitHost, fetchCollection} from '../util/cockpit';
 import {renderer} from '../util/markdownRenderer';
 import {encodeSlug} from '../util/slug';
-import {getCategoryUrl} from './themen/[...thema]';
+import {getCategoryUrl} from '../components/HierachyArticles';
 
 export default function Home({articles, cockpitHost, topics}) {
   return (
     <Site responsive={false}>
       <Title/>
-      <img src="assets/Artboard 2@2x.png" className="absolute right-0 mt-80"/>
+      <img src="assets/Artboard 2@2x.png" className="absolute right-0 mt-80" alt="logo"/>
       <Responsive>
         {articles.map((entry, i) => {
-          const link = entry.content[0].field?.name === 'content' ? `/artikel/${encodeSlug(entry.title)}` : `/themen/${getCategoryUrl(topics.find(t => t._id === entry.content[0].value._id), topics).join('/')}`;
+          const link = entry.content[0].field?.name === 'content'
+            ? `/artikel/${encodeSlug(entry.title)}`
+            : `/themen/${getCategoryUrl(topics.find(t => t._id === entry.content[0].value._id), topics).join('/')}`;
           return (
             <div className={`py-8 flex flex-col md:flex-row ${i % 2 === 0 ? '' : 'md:flex-row-reverse'}`}
                  key={entry._id}>
