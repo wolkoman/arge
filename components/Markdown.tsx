@@ -1,18 +1,37 @@
 import React from "react";
+import ReactMarkdown from 'react-markdown';
 
-export const renderer = {
+export default function Markdown({children}) {
+  return <ReactMarkdown renderers={renderer} children={children}/>
+}
+
+const renderer = {
   strong: value => (
     <span
       className="font-bold text-secondary-default"
-  children={value.children}
-  />
-),
+      children={value.children}
+    />
+  ),
   link: value => (
     <a href={value.href} className="text-blue-600 underline hover:no-underline">{value.children}</a>),
-  image: value => (
-    <img className="rounded border-primary-400 border m-2 max-h-80" src={value.src} />),
+  image(value) {
+    if(value.src.match("[^\|]*#([^\|]*)")){
+      const parts = value.src.split('#');
+      return <a href={parts[1]}><img className="rounded border-primary-400 border m-2 max-w-md w-full" src={parts[0]}/></a>;
+    }
+    return <img className="rounded border-primary-400 border m-2 max-w-md w-full" src={value.src}/>;
+  },
   paragraph: value => (
     <div className="py-2" children={value.children} />),
+  code(value) {
+    if(value?.language?.match("link=(.*)")){
+      const link = value.language.match("link=(.*)")[0];
+      return <a href={link}>
+        <Markdown children={value.value}/>
+      </a>;
+    }
+    return null;
+  },
   emphasis: value => (
     <span className="italic" children={value.children} />),
   blockquote: value => (
@@ -21,5 +40,5 @@ export const renderer = {
   heading: args => {
     return (
       <div className={["", "text-xl mt-1 mb-2","text-lg mt-1 mb-2 underline"][args.level]} children={args.children}/>);
-  }
+  },
 }

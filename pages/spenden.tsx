@@ -1,13 +1,12 @@
 import React from 'react';
 import {Site} from '../components/Site';
-import ReactMarkdown from 'react-markdown';
-import {renderer} from '../util/markdownRenderer';
 import {fetchSingleton} from '../util/cockpit';
+import Markdown from '../components/Markdown';
 
 export default function Spenden({article}) {
   return <Site>
     <div className="text-5xl font-bold mb-6 text-primary-500">Spenden</div>
-    <ReactMarkdown renderers={renderer} children={article.content}/>
+    <Markdown children={article.content}/>
   </Site>;
 }
 

@@ -2,9 +2,8 @@ import {useRouter} from 'next/router';
 import {Site} from './Site';
 import {Breadcrums, Crum} from './Breadcrums';
 import Link from 'next/link';
-import ReactMarkdown from 'react-markdown';
-import {renderer} from '../util/markdownRenderer';
 import React from 'react';
+import Markdown from './Markdown';
 
 export function ExtendedLayout({crums, title, files, subsites, content, cockpitHost}:{crums: Crum[], title: string, files: any[], subsites: any[], content, cockpitHost: string})  {
   const router = useRouter();
@@ -33,7 +32,7 @@ export function ExtendedLayout({crums, title, files, subsites, content, cockpitH
           </Container>}
         </div>}
       <div style={{flex: 2}}>
-        <ReactMarkdown renderers={renderer} children={content}/>
+        <Markdown children={content}/>
       </div>
     </div>
   </Site>;

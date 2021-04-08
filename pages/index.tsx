@@ -1,12 +1,11 @@
 import Link from 'next/link';
-import React, {useState} from 'react';
-import ReactMarkdown from 'react-markdown';
+import React from 'react';
 import {Responsive} from '../components/Responsive';
 import {Site} from '../components/Site';
 import {cockpitHost, fetchCollection} from '../util/cockpit';
-import {renderer} from '../util/markdownRenderer';
 import {encodeSlug} from '../util/slug';
 import {getCategoryUrl} from '../components/HierachyArticles';
+import Markdown from '../components/Markdown';
 
 export default function Home({articles, cockpitHost, topics}) {
   return (
@@ -28,7 +27,7 @@ export default function Home({articles, cockpitHost, topics}) {
                 <Link href={link}>
                   <div className="text-2xl py-2 font-bold cursor-pointer">{entry.title}</div>
                 </Link>
-                <ReactMarkdown renderers={renderer} children={entry.preview}/>
+                <Markdown children={entry.preview}/>
                 <Link href={link}>
                   <div className="underline hover:no-underline cursor-pointer mt-2 text-blue-600">Weiterlesen</div>
                 </Link>
