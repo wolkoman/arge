@@ -17,7 +17,7 @@ export function ExtendedLayout({crums, title, files, subsites, content, cockpitH
             <Container title="Unterseiten">
             {subsites.map(child =>
               <Link href={`${router.asPath}/${child.slug}`} key={child.slug}>
-                <div className="cursor-pointer underline hover:no-underline text-blue-600 my-2">
+                <div className="cursor-pointer underline hover:no-underline text-secondary-default my-2">
                   {child.title}
                 </div>
               </Link>
@@ -27,7 +27,7 @@ export function ExtendedLayout({crums, title, files, subsites, content, cockpitH
           <Container title="Downloads">
             {files?.map(({value}) => value?.path ?
               <Link href={`${cockpitHost}/storage/uploads${value?.path}`} key={value?.path}>
-                <div className="cursor-pointer underline hover:no-underline text-blue-600 my-2">{value?.title}</div>
+                <div className="cursor-pointer underline hover:no-underline text-secondary-default my-2">{value?.title}</div>
               </Link> : <div>Leerer Download</div>)}
           </Container>}
         </div>}

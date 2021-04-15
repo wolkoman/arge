@@ -2,7 +2,7 @@ import React from "react";
 import ReactMarkdown from 'react-markdown';
 
 export default function Markdown({children}) {
-  return <ReactMarkdown renderers={renderer} children={children}/>
+  return <ReactMarkdown renderers={renderer} children={children} allowDangerousHtml={true}/>
 }
 
 const renderer = {
@@ -13,7 +13,7 @@ const renderer = {
     />
   ),
   link: value => (
-    <a href={value.href} className="text-blue-600 underline hover:no-underline">{value.children}</a>),
+    <a href={value.href} className="text-primary-500 underline hover:no-underline">{value.children}</a>),
   image(value) {
     if(value.src.match("[^\|]*#([^\|]*)")){
       const parts = value.src.split('#');
