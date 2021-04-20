@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import React from 'react';
+import React, {useState} from 'react';
 import {Responsive} from '../components/Responsive';
 import {Site} from '../components/Site';
 import {cockpitHost, fetchCollection} from '../util/cockpit';
@@ -7,26 +7,40 @@ import {encodeSlug} from '../util/slug';
 import {getCategoryUrl} from '../components/HierachyArticles';
 import Markdown from '../components/Markdown';
 
-export default function Home({articles, cockpitHost, topics}) {
+export default function Home({articles, cockpitHost, topics, news}) {
   return (
     <Site responsive={false}>
       <Title/>
       <img src="assets/Artboard 2@2x.png" className="absolute right-0 mt-80" alt="logo"/>
       <Responsive>
         <Articles articles={articles} topics={topics} cockpitHost={cockpitHost}/>
-        <>
-
-        </>
+        <div className="mt-8 mb-12">
+          <div className="text-primary-500 font-bold text-4xl my-4 rounded-lg">News</div>
+          {news.map(n => <NewsArticle news={n}/>)}
+        </div>
       </Responsive>
     </Site>
   );
 }
 
+const NewsArticle = ({news}) => {
+  const [open, setOpen] = useState(false);
+  return <div className="my-2 px-4 py-2 bg-white">
+    <div className="font-bold flex justify-between cursor-pointer" onClick={() => setOpen(open => !open)}>
+      <div>{news.title}</div>
+      <div className="pt-1"><div className={`border-l-2 border-b-2 border-black w-2 h-2 transform ${open ? 'rotate-135' : '-rotate-45'} transition-all`}/></div>
+    </div>
+    <div className={`${open ? 'max-h-screen' : 'max-h-0'} overflow-hidden`}><Markdown children={news.content}/> </div>
+  </div>;
+}
+
 export async function getStaticProps() {
+  const news = await fetchCollection('news', {limit: '5'});
   const articles = await fetchCollection('article');
   const topics = await fetchCollection('topics');
   return {
     props: {
+      news,
       articles,
       topics,
       cockpitHost
@@ -64,7 +78,7 @@ function Articles({articles, topics, cockpitHost}) {
 const Title = () => (
   <div className="flex flex-col md:flex-row w-full h-6xl md:h-3xl">
     <div className="max-w-7xl flex-0 md:w-2/3 w-full relative -top-24">
-      <img className="w-full" src="assets/Artboard 1@2x.png" style={{pointerEvents: "none"}}/>
+      <img className="w-full" src="assets/Artboard 1@2x.png" style={{pointerEvents: 'none'}}/>
     </div>
     <div className="flex flex-col p-6 leading-10 justify-center h-full -top-24 md:top-0 md:-left-24 relative font-bold">
       <div className="text-6xl text-primary-500">
@@ -79,7 +93,7 @@ const Title = () => (
 
 const Image = ({path}) => {
   return (
-    <div className="w-full h-full rounded border border-primary-400"
+    <div className="w-full md:h-full min-h-md rounded border border-primary-400"
          style={{
            backgroundImage: `url(${path})`,
            backgroundSize: 'cover',

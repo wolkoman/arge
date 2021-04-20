@@ -11,7 +11,13 @@ module.exports = {
   },
   darkMode: false,
   theme: {
+    minHeight: {
+      'md': '200px',
+    },
     extend: {
+      rotate:{
+        '135': '135deg'
+      },
       screens: {
         print: {'raw': 'print'}
       },
