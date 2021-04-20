@@ -13,28 +13,10 @@ export default function Home({articles, cockpitHost, topics}) {
       <Title/>
       <img src="assets/Artboard 2@2x.png" className="absolute right-0 mt-80" alt="logo"/>
       <Responsive>
-        {articles.map((entry, i) => {
-          const link = entry.content[0].field?.name === 'content'
-            ? `/artikel/${encodeSlug(entry.title)}`
-            : `/themen/${getCategoryUrl(topics.find(t => t._id === entry.content[0].value._id), topics).join('/')}`;
-          return (
-            <div className={`py-2 flex flex-col md:flex-row ${i % 2 === 0 ? '' : 'md:flex-row-reverse'}`}
-                 key={entry._id}>
-              <div className={`md:w-1/3 ${i % 2 === 0 ? 'mr-4' : 'ml-4'} md:h-64`}>
-                <Image path={cockpitHost + entry.image.path}/>
-              </div>
-              <div className="md:w-2/3 flex flex-col justify-center">
-                <Link href={link}>
-                  <div className="text-2xl py-2 font-bold cursor-pointer text-primary-500">{entry.title}</div>
-                </Link>
-                <Markdown children={entry.preview}/>
-                <Link href={link}>
-                  <div className="underline hover:no-underline cursor-pointer mt-2 text-primary-300">Weiterlesen</div>
-                </Link>
-              </div>
-            </div>
-          );
-        })}
+        <Articles articles={articles} topics={topics} cockpitHost={cockpitHost}/>
+        <>
+
+        </>
       </Responsive>
     </Site>
   );
@@ -50,6 +32,33 @@ export async function getStaticProps() {
       cockpitHost
     },
   };
+}
+
+function Articles({articles, topics, cockpitHost}) {
+  return <>
+    {articles.map((entry, i) => {
+      const link = entry.content[0].field?.name === 'content'
+        ? `/artikel/${encodeSlug(entry.title)}`
+        : `/themen/${getCategoryUrl(topics.find(t => t._id === entry.content[0].value._id), topics).join('/')}`;
+      return (
+        <div className={`py-2 flex flex-col md:flex-row ${i % 2 === 0 ? '' : 'md:flex-row-reverse'}`}
+             key={entry._id}>
+          <div className={`md:w-1/3 ${i % 2 === 0 ? 'mr-4' : 'ml-4'} md:h-64`}>
+            <Image path={cockpitHost + entry.image.path}/>
+          </div>
+          <div className="md:w-2/3 flex flex-col justify-center">
+            <Link href={link}>
+              <div className="text-2xl py-2 font-bold cursor-pointer text-primary-500">{entry.title}</div>
+            </Link>
+            <Markdown children={entry.preview}/>
+            <Link href={link}>
+              <div className="underline hover:no-underline cursor-pointer mt-2 text-primary-300">Weiterlesen</div>
+            </Link>
+          </div>
+        </div>
+      );
+    })}
+  </>;
 }
 
 const Title = () => (
