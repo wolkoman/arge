@@ -13,18 +13,14 @@ export default function Home({articles, cockpitHost, topics, news}) {
       <Title/>
       <img src="assets/logo-04.svg" className="absolute right-0 mt-80 w-16" alt="logo"/>
       <Responsive>
-        <Articles articles={articles} topics={topics} cockpitHost={cockpitHost}/>
-        <div className="mt-8 mb-12">
-          <div className="text-primary-500 font-bold text-4xl my-4 rounded-lg">News</div>
-          {news.map(n => <NewsArticle news={n}/>)}
-        </div>
+        <Articles articles={articles} topics={topics} cockpitHost={cockpitHost} news={news}/>
       </Responsive>
     </Site>
   );
 }
 
 const NewsArticle = ({news}) => {
-  return <div className="my-2 px-4 py-2 bg-white">
+  return <div className="mx-2 my-4">
     <Link href={`/news/${news._id}`}>
     <div className="font-bold flex justify-between cursor-pointer">
       <div>{news.title}</div>
@@ -47,9 +43,9 @@ export async function getStaticProps() {
   };
 }
 
-function Articles({articles, topics, cockpitHost}) {
-  return <div className="grid grid-cols-2 gap-6">
-    {articles.map((entry, i) => {
+function Articles({articles, topics, cockpitHost, news}) {
+  return <div className="grid grid-cols-2 gap-6 mb-12">
+    {articles.map(entry => {
       const link = entry.content[0].field?.name === 'content'
         ? `/artikel/${encodeSlug(entry.title)}`
         : `/themen/${getCategoryUrl(topics.find(t => t._id === entry.content[0].value._id), topics).join('/')}`;
@@ -70,24 +66,25 @@ function Articles({articles, topics, cockpitHost}) {
         </div>
       );
     })}
+    <div className="p-4 bg-primary-500 rounded-lg text-white">
+      <div className="font-bold text-4xl">Aktuell</div>
+      {news.map(n => <NewsArticle news={n}/>)}
+    </div>
   </div>;
 }
 
 const Title = () => (
   <div className="flex flex-row justify-center my-8">
-    <div className="w-40">
-      <img className="w-full" src="assets/logo-03.svg"/>
-    </div>
     <div className="flex flex-col p-6 justify-center h-full text-primary-500 relative">
-      <div className="text-5xl font-bold">ARGE Schöpfungs&shy;verantwortung</div>
-      <div className="text-3xl">Spinnen wir den Faden weiter!</div>
+      <div className="text-5xl font-bold relative md:left-44 md:top-5 pb-4 md:pb-0">ARGE Schöpfungs&shy;verantwortung</div>
+      <img className="w-full" src="assets/logo.png"/>
     </div>
   </div>
 );
 
 const Image = ({path}) => {
   return (
-    <div className="w-full md:h-full min-h-md rounded border border-primary-400"
+    <div className="w-full md:h-full min-h-md rounded border border-primary-500"
          style={{
            backgroundImage: `url(${path})`,
            backgroundSize: 'cover',

@@ -40,7 +40,7 @@ export const Navbar = () => {
               className={
                 (index === 3
                   ? "hover:bg-secondary-default"
-                  : "hover:bg-primary-600") +
+                  : "hover:bg-primary-500") +
                 " hover:text-white p-3 rounded-md cursor-pointer"
               }
             >

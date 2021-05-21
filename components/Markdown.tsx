@@ -17,9 +17,9 @@ const renderer = {
   image(value) {
     if(value.src.match("[^\|]*#([^\|]*)")){
       const parts = value.src.split('#');
-      return <a href={parts[1]}><img className="rounded border-primary-400 border m-2 max-w-md w-full" src={parts[0]}/></a>;
+      return <a href={parts[1]}><img className="rounded border-primary-500 border m-2 max-w-md w-full" src={parts[0]}/></a>;
     }
-    return <img className="rounded border-primary-400 border m-2 max-w-md w-full" src={value.src}/>;
+    return <img className="rounded border-primary-500 border m-2 max-w-md w-full" src={value.src}/>;
   },
   paragraph: value => (
     <div className="py-2" children={value.children} />),
