@@ -11,10 +11,11 @@ export default function Home({articles, cockpitHost, topics, news}) {
   return (
     <Site responsive={false}>
       <Title/>
-      <img src="assets/logo-04.svg" className="absolute right-0 mt-80 w-16" alt="logo"/>
-      <Responsive>
-        <Articles articles={articles} topics={topics} cockpitHost={cockpitHost} news={news}/>
-      </Responsive>
+      <div className="relative z-50">
+        <Responsive>
+          <Articles articles={articles} topics={topics} cockpitHost={cockpitHost} news={news}/>
+        </Responsive>
+      </div>
     </Site>
   );
 }
@@ -22,9 +23,9 @@ export default function Home({articles, cockpitHost, topics, news}) {
 const NewsArticle = ({news}) => {
   return <div className="mx-2 my-4">
     <Link href={`/news/${news._id}`}>
-    <div className="font-bold flex justify-between cursor-pointer">
-      <div>{news.title}</div>
-    </div>
+      <div className="font-bold flex justify-between cursor-pointer">
+        <div>{news.title}</div>
+      </div>
     </Link>
   </div>;
 }
@@ -74,10 +75,16 @@ function Articles({articles, topics, cockpitHost, news}) {
 }
 
 const Title = () => (
-  <div className="flex flex-row justify-center my-8">
-    <div className="flex flex-col p-6 justify-center h-full text-primary-500 relative">
-      <div className="text-5xl font-bold relative md:left-44 md:top-5 pb-4 md:pb-0">ARGE Schöpfungs&shy;verantwortung</div>
-      <img className="w-full" src="assets/logo.png"/>
+  <div className="max-w-6xl w-full mx-auto">
+    <div className="flex flex-row justify-center my-8">
+      <div className="flex flex-col justify-center items-end text-primary-500 w-full pr-8">
+        <div className="text-2xl font-bold text-secondary-default">30 Jahre</div>
+        <div className="text-5xl font-bold text-right">ARGE Schöpfungs&shy;verantwortung</div>
+        <div className="text-2xl font-bold">Ökosoziale Bewegung</div>
+      </div>
+    </div>
+    <div className="relative w-full h-32 md:h-60 lg:h-80 md:-mt-16 lg:-mt-32">
+      <img src="/assets/logo.svg" className="relative"/>
     </div>
   </div>
 );
