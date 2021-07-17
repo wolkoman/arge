@@ -11,7 +11,7 @@ export default function Home({articles, cockpitHost, topics, news}) {
   return (
     <Site responsive={false}>
       <Title/>
-      <div className="relative z-50">
+      <div className="relative z-20">
         <Responsive>
           <Articles articles={articles} topics={topics} cockpitHost={cockpitHost} news={news}/>
         </Responsive>
@@ -21,10 +21,10 @@ export default function Home({articles, cockpitHost, topics, news}) {
 }
 
 const NewsArticle = ({news}) => {
-  return <div className="mx-2 my-4">
+  return <div className="my-2">
     <Link href={`/news/${news._id}`}>
-      <div className="font-bold flex justify-between cursor-pointer">
-        <div>{news.title}</div>
+      <div className="underline hover:no-underline cursor-pointer text-secondary-default">
+        {news.title}
       </div>
     </Link>
   </div>;
@@ -52,7 +52,7 @@ function Articles({articles, topics, cockpitHost, news}) {
         : `/themen/${getCategoryUrl(topics.find(t => t._id === entry.content[0].value._id), topics).join('/')}`;
       return (
         <div className="py-2 flex flex-col" key={entry._id}>
-          <div className="">
+          <div className="h-52">
             <Image path={cockpitHost + entry.image.path}/>
           </div>
           <div className="flex flex-col justify-center">
@@ -67,9 +67,14 @@ function Articles({articles, topics, cockpitHost, news}) {
         </div>
       );
     })}
-    <div className="p-4 bg-primary-500 rounded-lg text-white">
-      <div className="font-bold text-4xl">Aktuell</div>
-      {news.map(n => <NewsArticle news={n}/>)}
+    <div className="py-2 flex flex-col">
+      <div className="border-primary-default border bg-white rounded h-full p-4 text-primary-500 font-bold text-center text-3xl flex items-center h-52">
+          „Spinnen Sie den Faden mit uns weiter“
+      </div>
+      <div className="flex flex-col justify-center">
+        <div className="text-2xl py-2 font-bold cursor-pointer text-primary-500">Aktuell</div>
+        {news.map(n => <NewsArticle news={n}/>)}
+      </div>
     </div>
   </div>;
 }

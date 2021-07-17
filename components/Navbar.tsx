@@ -17,7 +17,7 @@ export const Navbar = () => {
   });
 
   return (
-    <div className="sticky top-0 w-full z-20 p-5 px-7 leading-4 flex flex-row justify-between items-center font-bold print:hidden">
+    <div className="sticky top-0 w-full p-5 px-7 leading-4 flex flex-row justify-between items-center font-bold print:hidden z-50">
       <div
         className="absolute top-0 left-0 w-full bg-white"
         style={{
