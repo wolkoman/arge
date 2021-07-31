@@ -1,5 +1,5 @@
 export const cockpitApiKey = process.env.COCKPIT_TOKEN;
-export const cockpitHost = process.env.COCKPIT_HOST;
+export const cockpitHost = process.env.NEXT_PUBLIC_COCKPIT_HOST;
 
 interface CockpitUser {
   user: string;

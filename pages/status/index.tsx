@@ -1,7 +1,6 @@
+import Link from 'next/link';
 import React, {useEffect, useState} from 'react';
-import {Site} from '../components/Site';
-import {fetchSingleton} from '../util/cockpit';
-import Markdown from '../components/Markdown';
+import {Site} from '../../components/Site';
 
 export default function Spenden({}) {
   const buildColor = "#643F0F";
@@ -29,5 +28,11 @@ export default function Spenden({}) {
       </div>
     </a>
     </> : null}
+    <div className="mt-8 mb-4 text-primary-500 text-lg font-bold">Seitenstruktur</div>
+    <Link href="status/struktur">
+      <div className="my-2 px-2 bg-blue-900 text-white rounded hover:opacity-90 inline-block cursor-pointer" style={{background: '#0e1e25'}}>
+        ansehen
+      </div>
+    </Link>
   </Site>;
 }
