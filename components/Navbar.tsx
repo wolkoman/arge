@@ -27,7 +27,7 @@ export const Navbar = () => {
       ></div>
       <Link href="/">
         <div className="relative z-20 text-primary-500 cursor-pointer">
-          <div className="text-md text-secondary-default">Arbeitsgemeinschaft</div>
+          <div className="text-md text-secondary-default">ARGE</div>
           <div className="text-xl">Schöpfungsverantwortung</div>
         </div>
       </Link>
