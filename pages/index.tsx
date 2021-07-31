@@ -2,18 +2,18 @@ import Link from 'next/link';
 import React, {useState} from 'react';
 import {Responsive} from '../components/Responsive';
 import {Site} from '../components/Site';
-import {cockpitHost, fetchCollection} from '../util/cockpit';
+import {cockpitHost, fetchCollection, fetchSingleton} from '../util/cockpit';
 import {encodeSlug} from '../util/slug';
 import {getCategoryUrl} from '../components/HierachyArticles';
 import Markdown from '../components/Markdown';
 
-export default function Home({articles, cockpitHost, topics, news}) {
+export default function Home({articles, topics, news, quote}) {
   return (
     <Site responsive={false}>
       <Title/>
       <div className="relative z-20">
         <Responsive>
-          <Articles articles={articles} topics={topics} cockpitHost={cockpitHost} news={news}/>
+          <Articles articles={articles} topics={topics} news={news} quote={quote}/>
         </Responsive>
       </div>
     </Site>
@@ -31,20 +31,17 @@ const NewsArticle = ({news}) => {
 }
 
 export async function getStaticProps() {
-  const news = await fetchCollection('news', {limit: '5'});
-  const articles = await fetchCollection('article');
-  const topics = await fetchCollection('topics');
   return {
     props: {
-      news,
-      articles,
-      topics,
-      cockpitHost
+      news: await fetchCollection('news', {limit: '5'}),
+      articles: await fetchCollection('article'),
+      topics: await fetchCollection('topics'),
+      quote: await fetchSingleton('quote')
     },
   };
 }
 
-function Articles({articles, topics, cockpitHost, news}) {
+function Articles({articles, topics, news, quote}) {
   return <div className="grid grid-cols-2 gap-6 mb-12">
     {articles.map(entry => {
       const link = entry.content[0].field?.name === 'content'
@@ -68,8 +65,8 @@ function Articles({articles, topics, cockpitHost, news}) {
       );
     })}
     <div className="py-2 flex flex-col">
-      <div className="border-primary-default border bg-white rounded h-full p-4 text-primary-500 font-bold text-center text-3xl flex items-center h-52">
-          „Spinnen Sie den Faden mit uns weiter“
+      <div className="border-primary-default border bg-white rounded p-4 text-primary-500 font-bold text-center text-3xl flex items-center h-52">
+        {quote.text}
       </div>
       <div className="flex flex-col justify-center">
         <div className="text-2xl py-2 font-bold cursor-pointer text-primary-500">Aktuell</div>
@@ -83,7 +80,7 @@ const Title = () => (
   <div className="max-w-6xl w-full mx-auto">
     <div className="flex flex-row justify-center my-8">
       <div className="flex flex-col justify-center items-end text-primary-500 w-full pr-8">
-        <div className="text-2xl font-bold text-secondary-default">30 Jahre</div>
+        <div className="text-2xl font-bold text-secondary-default">30+ Jahre</div>
         <div className="text-5xl font-bold text-right">ARGE Schöpfungs&shy;verantwortung</div>
         <div className="text-2xl font-bold">Ökosoziale Bewegung</div>
       </div>
@@ -95,12 +92,10 @@ const Title = () => (
 );
 
 const Image = ({path}) => {
-  return (
-    <div className="w-full md:h-full min-h-md rounded border border-primary-500"
-         style={{
-           backgroundImage: `url(${path})`,
-           backgroundSize: 'cover',
-           backgroundPosition: '50% 50%'
-         }}></div>
-  );
+  return <div className="w-full md:h-full min-h-md rounded border border-primary-500"
+  style={{
+    backgroundImage: `url(${path})`,
+    backgroundSize: 'cover',
+    backgroundPosition: '50% 50%'
+  }}/>;
 }
