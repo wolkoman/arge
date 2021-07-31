@@ -7,9 +7,9 @@ export default function Spenden({topics, articles}) {
   return <Site>
     <div className="text-5xl font-bold mb-6 text-primary-500">Seitenstruktur</div>
     <div className="text-lg font-bold mt-8">Über uns</div>
-    {articles.map(item => <Item item={item} collection="ueberuns"/>)}
+    {articles.map(item => <Item item={item} collection="ueberuns" key={item._id}/>)}
     <div className="text-lg font-bold mt-8">Themen</div>
-    {topics.map(item => <Item item={item} collection="topics"/>)}
+    {topics.map(item => <Item item={item} collection="topics" key={item._id}/>)}
   </Site>;
 }
 function Item({item, collection}){
@@ -18,7 +18,7 @@ function Item({item, collection}){
       <Link href={`${cockpitHost}/collections/entry/${collection}/${item._id}`}>{item.title}</Link>
     </div>
     <div className="pl-8">
-      {item.children?.map(child => <Item item={child} collection={collection}/>)}
+      {item.children?.map(child => <Item item={child} collection={collection} key={child._id}/>)}
     </div>
   </div>
 }

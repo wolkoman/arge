@@ -1,8 +1,9 @@
-import Head from "next/head";
-import React from "react";
-import { Footer } from "./Footer";
-import { Navbar } from "./Navbar";
-import { Responsive } from "./Responsive";
+import Head from 'next/head';
+import React from 'react';
+import {Footer} from './Footer';
+import {Navbar} from './Navbar';
+import {Responsive} from './Responsive';
+import {GoogleAnalytics} from './GoogleAnalytics';
 
 export const Site = ({
   children,
@@ -16,6 +17,7 @@ export const Site = ({
       <Head>
         <title>ARGE Schöpfungsverantwortung</title>
         <link rel="icon" href="/favicon.ico" />
+        <GoogleAnalytics/>
       </Head>
       <div>
         <Navbar />
