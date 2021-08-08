@@ -65,7 +65,7 @@ function Articles({articles, topics, news, quote}) {
       );
     })}
     <div className="py-2 flex flex-col">
-      <div className="border-primary-default border bg-white rounded p-4 text-primary-500 font-bold text-center text-3xl flex items-center h-52">
+      <div className="border-primary-default border bg-white rounded p-4 text-primary-500 font-bold text-center text-3xl flex items-center h-52" style={{ backgroundImage: `url(http://argeschoepfung.eni.wien/storage/uploads/2021/08/08/61103df0b1367wolken.jpg)`}}>
         {quote.text}
       </div>
       <div className="flex flex-col justify-center">
