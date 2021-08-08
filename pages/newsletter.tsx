@@ -7,9 +7,8 @@ export default function Newsletter({article}) {
   return <Site>
     <div className="text-5xl font-bold mb-6 text-primary-500">Newsletter</div>
     <Markdown children={article.content}/>
-    <iframe className="mj-w-res-iframe" frameBorder="0" scrolling="no"
-  src="https://app.mailjet.com/widget/iframe/6CzS/Ijs" width="100%" height="600"/>
-    <script type="text/javascript" src="https://app.mailjet.com/statics/js/iframeResizer.min.js"/>
+    <iframe className="mj-w-res-iframe" frameBorder="0" scrolling="no" marginHeight="0" marginWidth="0" src="https://app.mailjet.com/widget/iframe/6CzS/K8x" width="100%" height="400px"></iframe>
+    <script type="text/javascript" src="https://app.mailjet.com/statics/js/iframeResizer.min.js"></script>
   </Site>;
 }
 
