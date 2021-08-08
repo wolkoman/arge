@@ -23,7 +23,7 @@ export const Site = ({
         <Navbar />
         {responsive ? <div className="my-8"><Responsive>{children}</Responsive></div> : children}
       </div>
-      <div className="bg-white">
+      <div className="bg-white z-10">
         <Responsive>
           <Footer />
         </Responsive>
