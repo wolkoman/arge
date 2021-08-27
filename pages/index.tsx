@@ -43,9 +43,8 @@ export async function getStaticProps() {
 
 function Articles({articles, topics, news, quote}) {
   return <div className="grid grid-cols-2 gap-6 mb-12">
-    <!-- https://pixabay.com/illustrations/crowd-people-silhouettes-2045499/ -->
     <div className="py-2 flex flex-col">
-      <div className="border-primary-default border bg-white rounded p-4 text-primary-500 font-bold text-center text-3xl flex items-center h-52" style={{ backgroundImage: `url(http://argeschoepfung.eni.wien/storage/uploads/2021/08/08/61103df0b1367wolken.jpg)`}}>
+      <div className="border-primary-default border bg-white rounded p-4 text-primary-500 font-bold text-center text-3xl flex items-center h-52" style={{ backgroundImage: `url(${cockpitHost}${quote.image.path})`}}>
         {quote.text}
       </div>
       <div className="flex flex-col justify-center">
