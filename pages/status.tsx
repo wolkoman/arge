@@ -1,14 +1,6 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 
-export default function Spenden({}) {
-  return <></>;
-}
-
-export async function getStaticProps(context) {
-  return {
-    redirect: {
-      destination: '/admin',
-      permanent: true,
-    },
-  }
+export default function Status({}) {
+  useEffect(() => location.replace("/admin"));
+  return <div></div>;
 }
