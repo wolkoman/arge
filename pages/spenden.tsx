@@ -6,7 +6,14 @@ import Markdown from '../components/Markdown';
 export default function Spenden({article}) {
   return <Site>
     <div className="text-5xl font-bold mb-6 text-primary-500">Spenden</div>
-    <Markdown children={article.content}/>
+    <div className="flex flex-col md:flex-row">
+
+      <iframe className="flex-shrink-0 pr-4" src="https://donorbox.org/embed/arge-schopfungsverantwortung?default_interval=o&hide_donation_meter=true"
+    name="donorbox" frameBorder="0" scrolling="no"
+    height="800px" width="100%" style={{maxWidth: 400, minWidth: 250, maxHeight: 'none!important'}}/>
+      <div><Markdown children={article.content}/></div>
+    </div>
+
   </Site>;
 }
 
