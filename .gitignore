@@ -18,6 +18,8 @@
 # misc
 .DS_Store
 *.pem
+*.iml
+*.xml
 
 # debug
 npm-debug.log*
