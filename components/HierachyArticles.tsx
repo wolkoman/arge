@@ -31,7 +31,6 @@ const system = (collectionName: string, url:string, displayName: string) => ({
         slug: encodeSlug(t.title),
         title: t.title
       }));
-    console.log(children);
     const parents = [];
     let movingItem = item;
     while (movingItem.category?._id) {

@@ -3,6 +3,7 @@ import ReactMarkdown from 'react-markdown';
 import {Gallery, Item} from 'react-photoswipe-gallery';
 import 'photoswipe/dist/photoswipe.css'
 import 'photoswipe/dist/default-skin/default-skin.css'
+import Link from "next/link";
 
 export default function Markdown({children}) {
   return <>{ReactMarkdown({renderers: renderer, children, allowDangerousHtml: true}).props.children.map(mapObject)}</>;
@@ -58,6 +59,7 @@ const isPartOfGallery = (object) => {
   return isImageElement(object) || isLineBreakElement(object);
 }
 
+const collectionLinkPrefix = "collection://";
 const renderer = {
   strong: value => (
     <span
@@ -65,8 +67,14 @@ const renderer = {
       children={value.children}
     />
   ),
-  link: value => (
-    <a href={value.href} className="text-primary-500 underline hover:no-underline">{value.children}</a>),
+  link: value => {
+    let href = value.href
+    if(value.href.startsWith(collectionLinkPrefix)) {
+      href = `/collectionlink/${value.href.substring(collectionLinkPrefix.length)}`;
+    }
+    return (
+      <Link href={href}><a className="text-primary-500 underline hover:no-underline">{value.children}</a></Link>);
+  },
   image(value) {
     let size = 28;
     if(value.src.match("size=(\d*)")) {
