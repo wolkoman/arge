@@ -26,11 +26,12 @@ const system = (collectionName: string, url:string, displayName: string) => ({
     const slug = params.hierachy.reverse()[0];
     const item = items.find(item => encodeSlug(item.title) === slug);
     const children = items
-      .filter(t => t.category?._id === item._id)
+      .filter(t => t.category?._id === item._id && t.hidden !== true)
       .map(t => ({
         slug: encodeSlug(t.title),
         title: t.title
       }));
+    console.log(children);
     const parents = [];
     let movingItem = item;
     while (movingItem.category?._id) {

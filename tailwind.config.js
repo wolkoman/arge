@@ -27,7 +27,7 @@ module.exports = {
           50: "#e5f6ff",
           500: "#467db6",
         },
-        secondary: { default: "#9E0000" },
+        secondary: { default: "#9E0000", 50: "#eda5a5" },
       },
       height: {
         xl: "200px",

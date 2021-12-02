@@ -92,7 +92,11 @@ const renderer = {
   emphasis: value => (
     <span className="italic" children={value.children} />),
   blockquote: value => (
-    <div className="italic border-l-4 pl-4 my-2 border-secondary-default opacity-90 md:-mx-6 md:text-lg" children={value.children} />),
+    <div className="text-center font-serif italic px-6 py-2 my-6 rounded-lg relative">
+      <div className="absolute -top-4 -left-4 text-8xl text-primary-500" children={"“"}/>
+      <div className="absolute -bottom-4 -right-4 text-8xl text-primary-500" children={"„"}/>
+      {value.children}
+    </div>),
   list: value => value.ordered ? <ol className="list-decimal pl-6 my-2">{value.children}</ol> : <ul className="list-disc pl-6 my-2">{value.children}</ul>,
   heading: args => {
     return (

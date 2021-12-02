@@ -25,6 +25,6 @@ export default function Index({topics, cockpitHost}) {
 }
 
 export async function getStaticProps() {
-  const topics = (await fetchCollection('topics')).filter(topic => !topic.category);
+  const topics = (await fetchCollection('topics')).filter(topic => !topic.category && topic.hidden !== false);
   return {props: {topics, cockpitHost}}
 }
