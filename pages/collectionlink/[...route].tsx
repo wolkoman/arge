@@ -32,7 +32,7 @@ export const getStaticPaths = async () => {
 
 export const getStaticProps = async ({params: {route}}) => {
   const items = await getAllItems();
-  const itemId = route.at(-1);
+  const itemId = route[route.length - 1];
   const item = items.find(item => item._id === itemId);
   return { redirect: {destination: "/"+[item.collectionUrl, ...getCategoryUrl(item,items)].join("/")}};
 }
