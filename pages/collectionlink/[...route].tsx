@@ -27,16 +27,7 @@ async function getAllRevelantRoutes() {
   return matches.map(match => match.match(/.*\/\/(.*)\)/)[1].split("/"));
 }
 
-export const getStaticPaths = async () => {
-  const routes = await getAllRevelantRoutes();
-  console.log(routes);
-  return {
-    paths: routes.map(route => ({params: {route: route}})),
-    fallback: false
-  };
-}
-
-export const getStaticProps = async ({params: {route}}) => {
+export const getServerSideProps = async ({params: {route}}) => {
   const items = await getAllItems();
   const itemId = route[route.length - 1];
   const item = items.find(item => item._id === itemId);
