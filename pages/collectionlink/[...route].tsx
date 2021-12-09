@@ -1,9 +1,15 @@
 import {fetchCollection} from '../../util/cockpit';
 import {Site} from '../../components/Site';
 import {getCategoryUrl} from '../../components/HierachyArticles';
+import {useEffect} from 'react';
+import {useRouter} from 'next/router';
 
 function Page(props) {
-  return <Site><p>{JSON.stringify(props)}</p></Site>;
+  const router = useRouter();
+  useEffect(() => {
+    router.push(props.redirect);
+  }, []);
+  return <Site><p>{JSON.stringify(props.redirect)}</p></Site>;
 }
 
 export default Page
@@ -34,5 +40,5 @@ export const getStaticProps = async ({params: {route}}) => {
   const items = await getAllItems();
   const itemId = route[route.length - 1];
   const item = items.find(item => item._id === itemId);
-  return { redirect: {destination: "/"+[item.collectionUrl, ...getCategoryUrl(item,items)].join("/")}};
+  return { props: {redirect: "/"+[item.collectionUrl, ...getCategoryUrl(item,items)].join("/")}};
 }
