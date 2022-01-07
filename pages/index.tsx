@@ -33,7 +33,7 @@ const NewsArticle = ({news}) => {
 export async function getStaticProps() {
   return {
     props: {
-      news: await fetchCollection('news', {limit: '5'}),
+      news: (await fetchCollection('news', {limit: '5'})).filter(news => news.active),
       articles: await fetchCollection('article'),
       topics: await fetchCollection('topics'),
       quote: await fetchSingleton('quote')
