@@ -1,99 +1,115 @@
-import { useState } from "react";
+import {useRef, useState} from "react";
 import Link from "next/link";
-import { useScrollPosition } from "@n8tb1t/use-scroll-position";
+import {useScrollPosition} from "@n8tb1t/use-scroll-position";
 
 export const Navbar = () => {
-  const [openMobile, setOpenMobile] = useState(false);
-  const [floating, setFloating] = useState(false);
-  const items = [
-    { label: "Über uns", page: "/ueber-uns/ueber-uns" },
-    { label: "Themen", page: "/themen" },
-    { label: "Newsletter", page: "/newsletter" },
-    { label: "Spenden", page: "/spenden" },
-  ];
+    const [searchActive, setSearchActive] = useState(false);
+    const searchInput = useRef<HTMLInputElement>();
+    const [openMobile, setOpenMobile] = useState(false);
+    const [floating, setFloating] = useState(false);
+    const items = [
+        {label: "Über uns", page: "/ueber-uns/ueber-uns"},
+        {label: "Themen", page: "/themen"},
+        {label: "Newsletter", page: "/newsletter"},
+        {label: "Spenden", page: "/spenden"},
+    ];
 
-  useScrollPosition(({ currPos }) => {
-    setFloating(currPos.y !== 0);
-  });
+    useScrollPosition(({currPos}) => {
+        setFloating(currPos.y !== 0);
+    });
 
-  return (
-    <div className="sticky top-0 w-full p-5 px-7 leading-4 flex flex-row justify-between items-center font-bold print:hidden z-50">
-      <div
-        className="absolute top-0 left-0 w-full bg-white"
-        style={{
-          height: floating ? "84px" : "0px",
-          transition: "0.2s all linear 0s",
-        }}
-      ></div>
-      <Link href="/">
-        <div className="relative z-20 text-primary-500 cursor-pointer">
-          <div className="text-md text-secondary-default">ARGE</div>
-          <div className="text-xl">Schöpfungsverantwortung</div>
-        </div>
-      </Link>
-      <Hamburger onClick={() => setOpenMobile(!openMobile)} open={openMobile} />
-      <div className="hidden flex-row md:flex text-primary-500 z-10">
-        {items.map((item, index) => (
-          <Link href={item.page} key={item.page}>
-            <div
-              key={index}
-              className={
-                (index === 3
-                  ? "hover:bg-secondary-default"
-                  : "hover:bg-primary-500") +
-                " hover:text-white p-3 rounded-md cursor-pointer"
-              }
-            >
-              {item.label}
-            </div>
-          </Link>
-        ))}
-      </div>
-      <div
-        className={
-          "bg-white absolute top-0 left-0 w-screen z-10 overflow-hidden box-border text-primary-500 text-4xl underline " +
-          (openMobile ? "h-screen pt-32 px-8" : "h-0")
+    function search() {
+        if (searchInput?.current.value === "") {
+            searchInput.current.focus();
+            setSearchActive(x => !x);
+        } else {
+            const searchContent = encodeURI(searchInput.current.value + " site:argeschoepfung.at");
+            searchInput.current.value = "";
+            location.href = `https://google.com/search?q=${searchContent}`
         }
-      >
-        <Link href="/">
-          <div className={" text-primary-500 p-3"}>
-            Startseite
-          </div>
-        </Link>
-        {items.map((item, index) => (
-          <Link href={item.page} key={index}>
-            <div key={index} className={" text-primary-500 p-3"}>
-              {item.label}
+    }
+
+    return (
+        <div
+            className="sticky top-0 w-full p-5 px-7 leading-4 flex flex-row justify-between items-center font-bold print:hidden z-50">
+            <div className="absolute top-0 left-0 w-full bg-white" style={{
+                height: floating ? "84px" : "0px",
+                transition: "0.2s all linear 0s",
+            }}
+            />
+            <Link href="/">
+                <div className="relative z-20 text-primary-500 cursor-pointer">
+                    <div className="text-md text-secondary-default">ARGE</div>
+                    <div className="text-xl">Schöpfungsverantwortung</div>
+                </div>
+            </Link>
+            <Hamburger onClick={() => setOpenMobile(!openMobile)} open={openMobile}/>
+            <div className="hidden md:flex flex-row text-primary-500 z-10">
+                {items.map((item, index) => (
+                    <Link href={item.page} key={item.page}>
+                        <div
+                            key={index}
+                            className={"hover:bg-white p-3 rounded-md cursor-pointer"}
+                        >
+                            {item.label}
+                        </div>
+                    </Link>
+                ))}
+                <div className="p-3 hover:bg-white p-3 rounded-md cursor-pointer flex">
+
+                    <input ref={searchInput}
+                           onKeyDown={(event) => {if(event.key === "Enter") search();}}
+                           className={`outline-none py-1 -my-2  rounded transition ${searchActive ? "w-44 px-3 border border-primary-default mr-3" : "w-0 px-0"}`}/>
+                    <div onClick={search}>
+                        <img src="/assets/search.svg" className="w-5"/>
+                    </div>
+                </div>
             </div>
-          </Link>
-        ))}
-      </div>
-    </div>
-  );
+            <div
+                className={
+                    "bg-white absolute top-0 left-0 w-screen z-10 overflow-hidden box-border text-primary-500 text-4xl underline " +
+                    (openMobile ? "h-screen pt-32 px-8" : "h-0")
+                }
+            >
+                <Link href="/">
+                    <div className={" text-primary-500 p-3"}>
+                        Startseite
+                    </div>
+                </Link>
+                {items.map((item, index) => (
+                    <Link href={item.page} key={index}>
+                        <div key={index} className={" text-primary-500 p-3"}>
+                            {item.label}
+                        </div>
+                    </Link>
+                ))}
+            </div>
+        </div>
+    );
 };
 
-const Hamburger = ({ onClick, open }) => {
-  return (
-    <div className="md:hidden cursor-pointer relative z-20" onClick={onClick}>
-      <div
-        className={
-          "relative w-6 h-1  transform bg-primary-500 " +
-          (open ? "rotate-45 top-2" : "top-0 rotate-0")
-        }
-      />
-      <div className={"relative w-6 h-1"} />
-      <div
-        className={
-          "relative w-6 h-1 bg-primary-500 " + (open ? "opacity-0" : "")
-        }
-      />
-      <div className={"relative w-6 h-1"} />
-      <div
-        className={
-          "relative w-6 h-1 transform bg-primary-500 " +
-          (open ? "-rotate-45 -top-2" : "rotate-0 top-0")
-        }
-      />
-    </div>
-  );
+const Hamburger = ({onClick, open}) => {
+    return (
+        <div className="md:hidden cursor-pointer relative z-20" onClick={onClick}>
+            <div
+                className={
+                    "relative w-6 h-1  transform bg-primary-500 " +
+                    (open ? "rotate-45 top-2" : "top-0 rotate-0")
+                }
+            />
+            <div className={"relative w-6 h-1"}/>
+            <div
+                className={
+                    "relative w-6 h-1 bg-primary-500 " + (open ? "opacity-0" : "")
+                }
+            />
+            <div className={"relative w-6 h-1"}/>
+            <div
+                className={
+                    "relative w-6 h-1 transform bg-primary-500 " +
+                    (open ? "-rotate-45 -top-2" : "rotate-0 top-0")
+                }
+            />
+        </div>
+    );
 };
