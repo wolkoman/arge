@@ -15,7 +15,7 @@ export function ExtendedLayout({crums, title, files, subsites, content, cockpitH
         <div style={{flex: 1}}>
           {subsites.length == 0 ? null :
             <Container title="Unterseiten">
-            {subsites.map(child =>
+            {subsites.sort((a,b) => a.priority - b.priority).map(child =>
               <Link href={`${router.asPath}/${child.slug}`} key={child.slug}>
                 <div className="cursor-pointer underline hover:no-underline text-secondary-default my-2">
                   {child.title}

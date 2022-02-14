@@ -29,7 +29,8 @@ const system = (collectionName: string, url:string, displayName: string) => ({
       .filter(t => t.category?._id === item._id && t.hidden !== true)
           .map(t => ({
             slug: encodeSlug(t.title),
-            title: t.title
+            title: t.title,
+            priority: t.priority ?? 100
           }));
       const parents = [];
       let movingItem = item;
