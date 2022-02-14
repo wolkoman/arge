@@ -3,10 +3,10 @@ import React, {useEffect, useState} from 'react';
 import {Site} from '../../components/Site';
 
 export default function Spenden({}) {
-  const buildColor = "#643F0F";
+  const successColor = "#0D544F";
   const imageUrl = 'https://api.netlify.com/api/v1/badges/dab48f2e-d6f3-4c3e-bdbb-860989e07100/deploy-status';
   const [showUpdate, setShowUpdate] = useState(false);
-  const isUpdateable = () => fetch(imageUrl).then(x => x.text()).then(x => x.indexOf(buildColor) === -1)
+  const isUpdateable = () => fetch(imageUrl).then(x => x.text()).then(x => x.indexOf(successColor) !== -1)
   useEffect(() => {
     isUpdateable().then(x => setShowUpdate(x));
   }, []);

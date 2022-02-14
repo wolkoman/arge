@@ -2,6 +2,7 @@
 
 # dependencies
 /node_modules
+/cockpit
 /.pnp
 .pnp.js
 
