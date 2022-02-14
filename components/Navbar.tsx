@@ -25,7 +25,7 @@ export const Navbar = () => {
         } else {
             const searchContent = encodeURI(searchInput.current.value + " site:argeschoepfung.at");
             searchInput.current.value = "";
-            location.href = `https://google.com/search?q=${searchContent}`
+            location.href = `https://ecosia.org/search?q=${searchContent}`
         }
     }
 
