@@ -22,5 +22,5 @@ export async function getStaticPaths() {
 export async function getStaticProps({params: {slug}}) {
   const articles = await fetchCollection('article');
   const article = articles.find(a => encodeSlug(a.title) === slug);
-  return {props: {article}}
+  return {props: {article}, revalidate: 1}
 }

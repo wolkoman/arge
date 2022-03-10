@@ -50,6 +50,7 @@ export async function getStaticProps() {
             topics: await fetchCollection('topics'),
             quote: await fetchSingleton('quote')
         },
+        revalidate: 1
     };
 }
 

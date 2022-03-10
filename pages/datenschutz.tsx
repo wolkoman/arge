@@ -17,6 +17,6 @@ export async function getStaticProps() {
     props: {
       datenschutz,
       cockpitHost
-    },
+    },revalidate: 1
   };
 }

@@ -18,5 +18,5 @@ export default function Spenden({article}) {
 }
 
 export async function getStaticProps() {
-  return {props: {article: await fetchSingleton('spenden')}}
+  return {props: {article: await fetchSingleton('spenden')}, revalidate: 1}
 }
