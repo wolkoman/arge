@@ -7,7 +7,7 @@ import {GoogleAnalytics} from './GoogleAnalytics';
 
 export const Site = (props: { title: string; children: any; responsive?: boolean; }) => {
     return (
-        <div className="min-h-screen bg-primary-50 print:bg-white flex flex-col justify-between">
+        <div className="min-h-screen print:bg-white flex flex-col justify-between">
             <Head>
                 <title>{props.title}</title>
                 <link rel="icon" href="/favicon.ico"/>
@@ -16,12 +16,12 @@ export const Site = (props: { title: string; children: any; responsive?: boolean
             <div>
                 <Navbar/>
                 {
-                    props.responsive
+                    (props.responsive ?? true)
                         ? <div className="my-8"><Responsive>{props.children}</Responsive></div>
                         : props.children
                 }
             </div>
-            <div className="bg-white z-10">
+            <div className="z-10">
                 <Responsive>
                     <Footer/>
                 </Responsive>

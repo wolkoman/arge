@@ -31,12 +31,7 @@ export const Navbar = () => {
 
     return (
         <div
-            className="sticky top-0 w-full p-5 px-7 leading-4 flex flex-row justify-between items-center font-bold print:hidden z-50">
-            <div className="absolute top-0 left-0 w-full bg-white" style={{
-                height: floating ? "84px" : "0px",
-                transition: "0.2s all linear 0s",
-            }}
-            />
+            className={`sticky top-0 w-full p-5 px-7 leading-4 flex flex-row justify-between items-center font-bold print:hidden z-50 bg-primary-50 transition ${(floating ? 'shadow-lg' : '')} `}>
             <Link href="/">
                 <div className="relative z-20 text-primary-500 cursor-pointer">
                     <div className="text-md text-secondary-default">ARGE</div>
@@ -44,12 +39,12 @@ export const Navbar = () => {
                 </div>
             </Link>
             <Hamburger onClick={() => setOpenMobile(!openMobile)} open={openMobile}/>
-            <div className="hidden md:flex flex-row text-primary-500 z-10">
+            <div className="hidden md:flex flex-row items-center text-primary-500 z-10 space-x-2">
                 {items.map((item, index) => (
                     <Link href={item.page} key={item.page}>
                         <div
                             key={index}
-                            className={"hover:bg-white p-3 rounded-md cursor-pointer"}
+                            className={"border border-transparent hover:border-primary-500 p-3 rounded cursor-pointer"}
                         >
                             {item.label}
                         </div>

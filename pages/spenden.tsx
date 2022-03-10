@@ -6,9 +6,9 @@ import Markdown from '../components/Markdown';
 export default function Spenden({article}) {
   return <Site title="Spenden">
     <div className="text-5xl font-bold mb-6 text-primary-500">Spenden</div>
-    <div className="flex flex-col md:flex-row">
+    <div className="flex flex-col md:flex-row text-lg">
       {/* @ts-ignore */ }
-      <iframe allowpaymentrequest="true" className="flex-shrink-0 pr-4" src="https://donorbox.org/embed/arge-schopfungsverantwortung?default_interval=o&hide_donation_meter=true"
+      <iframe allowpaymentrequest="true" className="flex-shrink-0 pr-8" src="https://donorbox.org/embed/arge-schopfungsverantwortung?default_interval=o&hide_donation_meter=true"
     name="donorbox" frameBorder="0" scrolling="no"
     height="800px" width="100%" style={{maxWidth: 400, minWidth: 250, maxHeight: 'none!important'}}/>
       <div><Markdown children={article.content}/></div>

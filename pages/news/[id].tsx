@@ -1,8 +1,6 @@
 import {cockpitHost, fetchCollection} from '../../util/cockpit';
-import {encodeSlug} from '../../util/slug';
 import {Site} from '../../components/Site';
 import React from 'react';
-import {Breadcrums} from '../../components/Breadcrums';
 import Markdown from '../../components/Markdown';
 
 export default function Article({news}) {
