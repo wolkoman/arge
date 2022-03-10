@@ -5,7 +5,7 @@ import Markdown from '../components/Markdown';
 
 export default function Datenschutz({ datenschutz }) {
   return (
-    <Site>
+    <Site title="Datenschutz">
       <Markdown children={datenschutz.content} />
     </Site>
   );

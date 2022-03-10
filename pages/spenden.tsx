@@ -4,7 +4,7 @@ import {fetchSingleton} from '../util/cockpit';
 import Markdown from '../components/Markdown';
 
 export default function Spenden({article}) {
-  return <Site>
+  return <Site title="Spenden">
     <div className="text-5xl font-bold mb-6 text-primary-500">Spenden</div>
     <div className="flex flex-col md:flex-row">
       {/* @ts-ignore */ }

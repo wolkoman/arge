@@ -7,7 +7,7 @@ import Markdown from './Markdown';
 
 export function ExtendedLayout({crums, title, files, subsites, content, cockpitHost}:{crums: Crum[], title: string, files: any[], subsites: any[], content, cockpitHost: string})  {
   const router = useRouter();
-  return <Site>
+  return <Site title={title}>
     <Breadcrums crums={crums}/>
     <div className="text-5xl font-bold mb-6 text-primary-500">{title}</div>
     <div className="flex flex-col-reverse md:flex-row">

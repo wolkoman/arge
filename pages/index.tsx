@@ -9,7 +9,7 @@ import Markdown from '../components/Markdown';
 
 export default function Home({articles, topics, news, quote}) {
   return (
-    <Site responsive={false}>
+    <Site responsive={false} title="ARGE Schöpfungsverantwortung">
       <Title/>
       <div className="relative z-20">
         <Responsive>

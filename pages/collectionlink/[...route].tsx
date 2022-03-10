@@ -9,7 +9,7 @@ function Page(props) {
   useEffect(() => {
     router.push(props.redirect);
   }, []);
-  return <Site><p>{JSON.stringify(props.redirect)}</p></Site>;
+  return <Site title=""><p>{JSON.stringify(props.redirect)}</p></Site>;
 }
 
 export default Page

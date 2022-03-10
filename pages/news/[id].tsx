@@ -6,7 +6,7 @@ import {Breadcrums} from '../../components/Breadcrums';
 import Markdown from '../../components/Markdown';
 
 export default function Article({news}) {
-  return <Site>
+  return <Site title={news.title}>
     <div className="text-3xl font-bold mb-6 text-primary-500">{news.title}</div>
     <Markdown children={news.content}/>
   </Site>;

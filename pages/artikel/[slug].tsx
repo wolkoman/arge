@@ -6,7 +6,7 @@ import {Breadcrums} from '../../components/Breadcrums';
 import Markdown from '../../components/Markdown';
 
 export default function Article({article}) {
-  return <Site>
+  return <Site title={article.title}>
     <Breadcrums crums={[{name: "Startseite", link: "/"}, {name: article.title, link: `/artikel/${encodeSlug(article.title)}`}]}/>
     <div className="text-5xl font-bold mb-6 text-primary-500">{article.title}</div>
     <Markdown children={article.content[0].value}/>

@@ -4,7 +4,7 @@ import {Site} from '../../components/Site';
 import {cockpitHost, fetchCollection} from '../../util/cockpit';
 
 export default function Spenden({topics, articles}) {
-  return <Site>
+  return <Site title="Spenden">
     <div className="text-5xl font-bold mb-6 text-primary-500">Seitenstruktur</div>
     <div className="text-lg font-bold mt-8">Über uns</div>
     {articles.map(item => <Item item={item} collection="ueberuns" key={item._id}/>)}

@@ -16,7 +16,7 @@ export default function Spenden({}) {
       .then(() => window.location.assign("/api/update"))
       .catch(() => window.location.reload());
   };
-  return <Site>
+  return <Site title="Admin">
     <div className="text-5xl font-bold mb-6 text-primary-500">Admin</div>
     <div className="mt-8 mb-1 text-primary-500 text-lg font-bold">Aktueller Status</div>
     <img src={imageUrl} className="w-40"/>
