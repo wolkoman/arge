@@ -39,7 +39,7 @@ const system = (collectionName: string, url:string, displayName: string) => ({
         if(movingItem === undefined) break;
         parents.unshift({name: movingItem.title, segments: getCategoryUrl(movingItem, items)})
       }
-      return {props: {cockpitHost, item, children, parents}}
+      return {props: {cockpitHost, item, children, parents}, revalidate: 1}
     }
   });
 
