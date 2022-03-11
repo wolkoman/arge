@@ -22,8 +22,5 @@ export const Footer = ({}) => {
                 Aspekte der Datenverarbeitung im Rahmen unserer Website.
             </div>
         </div>
-        <div className="text-center text-secondary-default font-bold">
-            Zusammen die Schöpfung bewahren ❤️ ARGE Schöpfungsverantwortung
-        </div>
     </div>;
 };
