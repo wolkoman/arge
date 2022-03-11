@@ -55,28 +55,26 @@ export async function getStaticProps() {
 }
 
 function Articles({articles, topics, news, quote}) {
-    return <div className="grid grid-cols-2 gap-10 mb-12">
+    return <div className="grid md:grid-cols-2 gap-10 mb-12">
         {articles.map(entry => {
             const link = entry.content[0].field?.name === 'content'
                 ? `/artikel/${encodeSlug(entry.title)}`
                 : `/themen/${getCategoryUrl(topics.find(t => t._id === entry.content[0].value._id), topics).join('/')}`;
             return (
-                <div className="flex flex-col bg-white rounded-lg shadow overflow-hidden" key={entry._id}>
-                    <div className="h-52">
-                        <Image path={cockpitHost + entry.image.path}/>
-                    </div>
-                    <div className="flex flex-col justify-center p-6">
-                        <Link href={link}>
+                <Link href={link}>
+                    <div className="flex flex-col bg-white rounded-lg shadow overflow-hidden cursor-pointer" key={entry._id}>
+                        <div className="h-52">
+                            <Image path={cockpitHost + entry.image.path}/>
+                        </div>
+                        <div className="flex flex-col justify-center p-6">
                             <div className="text-2xl py-2 font-bold cursor-pointer text-primary-500">{entry.title}</div>
-                        </Link>
-                        <Markdown children={entry.preview}/>
-                        <Link href={link}>
+                            <Markdown children={entry.preview}/>
                             <div
                                 className="underline hover:no-underline cursor-pointer text-secondary-default">Weiterlesen
                             </div>
-                        </Link>
+                        </div>
                     </div>
-                </div>
+                </Link>
             );
         })}
     </div>;
