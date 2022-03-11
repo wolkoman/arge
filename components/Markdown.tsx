@@ -77,14 +77,15 @@ const renderer = {
   },
   image(value) {
     let size = 28;
-    if(value.src.match("size=(\d*)")) {
-      size = value.src.split("size=")[1];
+    const src = value.src.replace("data.argeschoepfung.at", "data2.argeschoepfung.at");
+    if(src.match("size=(\d*)")) {
+      size = src.split("size=")[1];
     }
-    if(value.src.match("[^\|]*#([^\|]*)")){
-      const parts = value.src.split('#');
+    if(src.match("[^\|]*#([^\|]*)")){
+      const parts = src.split('#');
       return <a href={parts[1]}><img className="rounded border-primary-500 border m-2 w-full" src={parts[0]} style={{ maxWidth: `${size}rem` }}/></a>;
     }
-    return <img className="rounded border-primary-500 border m-2 w-full" src={value.src} style={{ maxWidth: `${size}rem` }}/>;
+    return <img className="rounded border-primary-500 border m-2 w-full" src={src} style={{ maxWidth: `${size}rem` }}/>;
   },
   paragraph: value => (
     <div className="py-2" children={value.children} />),
