@@ -19,7 +19,7 @@ const system = (collectionName: string, url: string, displayName: string) => ({
     paths: async () => {
         const items = (await fetchCollection(collectionName));
         const hierachies = items.map(item => getCategoryUrl(item, items));
-        return {paths: hierachies.map(hierachy => ({params: {hierachy}})), fallback: false};
+        return {paths: hierachies.map(hierachy => ({params: {hierachy}})), fallback: 'blocking'};
     },
     props: async ({params}) => {
         const items = await fetchCollection(collectionName);
