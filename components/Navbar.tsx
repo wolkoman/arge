@@ -44,17 +44,17 @@ export const Navbar = () => {
                     <Link href={item.page} key={item.page}>
                         <div
                             key={index}
-                            className={"border border-transparent hover:border-primary-500 p-3 rounded cursor-pointer"}
+                            className="hover:bg-primary-500 hover:text-white p-3 rounded cursor-pointer"
                         >
                             {item.label}
                         </div>
                     </Link>
                 ))}
                 <div className="p-3 hover:bg-white p-3 rounded-md cursor-pointer flex">
-
-                    <input ref={searchInput}
-                           onKeyDown={(event) => {if(event.key === "Enter") search();}}
-                           className={`outline-none py-1 -my-2  rounded transition ${searchActive ? "w-44 px-3 border border-primary-default mr-3" : "w-0 px-0"}`}/>
+                    <input
+                        ref={searchInput}
+                        onKeyDown={(event) => {if (event.key === "Enter") search();}}
+                        className={`outline-none py-1 -my-2  rounded transition ${searchActive ? "w-44 px-3 border border-primary-default mr-3" : "w-0 px-0"}`}/>
                     <div onClick={search}>
                         <img src="/assets/search.svg" className="w-5"/>
                     </div>
@@ -62,7 +62,7 @@ export const Navbar = () => {
             </div>
             <div
                 className={
-                    "bg-white absolute top-0 left-0 w-screen z-10 overflow-hidden box-border text-primary-500 text-4xl underline " +
+                    "bg-white absolute top-0 left-0 w-screen z-10 overflow-hidden box-border text-primary-500 text-4xl " +
                     (openMobile ? "h-screen pt-32 px-8" : "h-0")
                 }
             >
@@ -73,7 +73,7 @@ export const Navbar = () => {
                 </Link>
                 {items.map((item, index) => (
                     <Link href={item.page} key={index}>
-                        <div key={index} className={" text-primary-500 p-3"}>
+                        <div key={index} className={"text-primary-500 p-3"}>
                             {item.label}
                         </div>
                     </Link>
