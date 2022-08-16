@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import React, {useState} from 'react';
+import React from 'react';
 import {Responsive} from '../components/Responsive';
 import {Site} from '../components/Site';
 import {cockpitHost, fetchCollection, fetchSingleton} from '../util/cockpit';
@@ -20,7 +20,7 @@ export default function Home({articles, topics, news, quote}) {
                                 <div className="text-2xl pb-6 text-primary-500">{quote.text}</div>
                             </div>
                             <div>
-                                {news.map(n => <NewsArticle news={n}/>)}
+                                {news.map(n => <NewsArticle key={n._id} news={n}/>)}
                             </div>
                         </div>
                     </div>

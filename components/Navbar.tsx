@@ -23,9 +23,9 @@ export const Navbar = () => {
             searchInput.current.focus();
             setSearchActive(x => !x);
         } else {
-            const searchContent = encodeURI(searchInput.current.value + " site:argeschoepfung.at");
+            const searchContent = encodeURI(searchInput.current.value);
             searchInput.current.value = "";
-            location.href = `https://ecosia.org/search?q=${searchContent}`
+            location.href = `/suche?q=${searchContent}`
         }
     }
 
