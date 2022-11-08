@@ -11,9 +11,6 @@ export default function Datenschutz({ datenschutz }) {
       E-Mail-Adresse<br/>
       admin (at) eni.wien<br/>
         <br/>
-      Website<br/>
-      pgr-initiative.at<br/>
-        <br/>
       Autor und Gestalter<br/>
       Manuel Wolkowitsch<br/>
         Draschestraße 105, 1230 Wien<br/>
