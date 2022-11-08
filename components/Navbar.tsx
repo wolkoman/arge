@@ -8,10 +8,11 @@ export const Navbar = () => {
     const [openMobile, setOpenMobile] = useState(false);
     const [floating, setFloating] = useState(false);
     const items = [
-        {label: "Über uns", page: "/ueber-uns/ueber-uns"},
-        {label: "Themen", page: "/themen"},
-        {label: "Newsletter", page: "/newsletter"},
-        {label: "Spenden", page: "/spenden"},
+        {label: "Schöpfungszeit", page: "/themen/schoepfungszeit"},
+        {label: "Umweltbildung", page: "/themen/umweltbildung"},
+        {label: "Ökologie und Religion", page: "/themen/oekologie-und-religion"},
+        {label: "Lebenspraxis", page: "/themen/lebenspraxis"},
+        {label: "Persönlichkeiten", page: "/themen/persoenlichkeiten"},
     ];
 
     useScrollPosition(({currPos}) => {
@@ -31,10 +32,10 @@ export const Navbar = () => {
 
     return (
         <div
-            className={`sticky top-0 w-full p-5 px-7 leading-4 flex flex-row justify-between items-center font-bold print:hidden z-50 bg-primary-50 transition ${(floating ? 'shadow-lg' : '')} `}>
+            className={`sticky top-0 w-full p-5 px-7 leading-4 flex flex-row justify-between items-center font-bold print:hidden z-50 bg-primary-50 transition `}>
             <Link href="/">
                 <div className="relative z-20 text-primary-500 cursor-pointer">
-                    <div className="text-md text-secondary-default">ARGE</div>
+                    <div className="text-md text-secondary-default">Enzyklopädie der</div>
                     <div className="text-xl">Schöpfungsverantwortung</div>
                 </div>
             </Link>

@@ -5,7 +5,7 @@ import {ExtendedLayout} from './ExtendedLayout';
 
 const system = (collectionName: string, url: string, displayName: string) => ({
     component: ({cockpitHost, item, children, parents}) => <ExtendedLayout
-        crums={[{name: displayName, link: `/${url}`},
+        crums={[
             ...parents.map(({name, segments}) => ({
                 name,
                 link: `/${url}/${segments.join('/')}`

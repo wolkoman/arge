@@ -11,7 +11,6 @@ export const Site = (props: { title: string; children: any; responsive?: boolean
             <Head>
                 <title>{props.title}</title>
                 <link rel="icon" href="/favicon.ico"/>
-                <GoogleAnalytics/>
             </Head>
             <div>
                 <Navbar/>

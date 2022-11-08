@@ -19,11 +19,11 @@ module.exports = {
             },
             colors: {
                 primary: {
-                    default: "#467db6",
-                    50: "#e5f6ff",
-                    500: "#467db6",
+                    default: "#333",
+                    50: "#ffffff",
+                    500: "#333",
                 },
-                secondary: {default: "#9E0000", 50: "#eda5a5"},
+                secondary: {default: "#333", 50: "#ddd"},
             },
             height: {
                 xl: "200px",
