@@ -3,7 +3,6 @@ import React from 'react';
 import {Footer} from './Footer';
 import {Navbar} from './Navbar';
 import {Responsive} from './Responsive';
-import {GoogleAnalytics} from './GoogleAnalytics';
 
 export const Site = (props: { title: string; children: any; responsive?: boolean; }) => {
     return (
