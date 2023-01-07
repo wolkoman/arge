@@ -42,7 +42,7 @@ const Title = () => (
         <div className="flex flex-row justify-center my-8">
             <div className="flex flex-col justify-center text-primary-500 w-full pr-8">
                 <div className="text-5xl">Enzyklopädie der</div>
-                <div className="text-7xl font-bold">Schöpfungsverwantwortung</div>
+                <div className="text-7xl font-bold">Schöpfungsverantwortung</div>
                 <div className="mt-6 opacity-70">Inhalte ursprünglich erstellt vom Verein "ARGE Schöpfungsverantwortung"<br/>Inhalte sind rechtefrei verwendbar.</div>
             </div>
         </div>
