@@ -29,7 +29,10 @@ export const Navbar = () => {
         }
     }
 
-    return (
+    return <>
+        <div className="bg-black text-white font-bold p-4 text-center">
+            Mit Ende Februar ist diese Seite nicht mehr aufrufbar. Viele Inhalte werden unter <a href="https://schoepfung.eni.wien" className="underline hover:no-underline">schoepfung.eni.wien</a> verfügbar sein.
+        </div>
         <div
             className={`sticky top-0 w-full p-5 px-7 leading-4 flex flex-row justify-between items-center font-bold print:hidden z-50 bg-primary-50 transition ${(floating ? 'shadow-lg' : '')} `}>
             <Link href="/">
@@ -80,7 +83,7 @@ export const Navbar = () => {
                 ))}
             </div>
         </div>
-    );
+    </>;
 };
 
 const Hamburger = ({onClick, open}) => {
