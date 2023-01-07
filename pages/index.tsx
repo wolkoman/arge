@@ -40,9 +40,9 @@ export async function getStaticProps() {
 const Title = () => (
     <div className="max-w-6xl w-full mx-auto my-24">
         <div className="flex flex-row justify-center my-8">
-            <div className="flex flex-col justify-center text-primary-500 w-full pr-8">
-                <div className="text-5xl">Enzyklopädie der</div>
-                <div className="text-7xl font-bold">Schöpfungsverantwortung</div>
+            <div className="flex flex-col justify-center text-primary-500 w-full p-8">
+                <div className="text-3xl md:text-5xl">Enzyklopädie der</div>
+                <div className="text-5xl md:text-7xl font-bold">Schöpfungs&shy;verantwortung</div>
                 <div className="mt-6 opacity-70">Inhalte ursprünglich erstellt vom Verein "ARGE Schöpfungsverantwortung"<br/>Inhalte sind rechtefrei verwendbar.</div>
             </div>
         </div>
