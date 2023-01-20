@@ -30,7 +30,7 @@ export const Navbar = () => {
     }
 
     return <>
-        <div className="bg-black text-white font-bold p-4 text-center">
+        <div className="bg-black text-white font-bold p-4 text-center hidden">
             Mit Ende Februar ist diese Seite nicht mehr aufrufbar. Viele Inhalte werden unter <a href="https://schoepfung.eni.wien" className="underline hover:no-underline">schoepfung.eni.wien</a> verfügbar sein.
         </div>
         <div
