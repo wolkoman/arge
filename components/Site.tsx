@@ -10,7 +10,8 @@ export const Site = (props: { title: string; children: any; responsive?: boolean
         <div className="min-h-screen print:bg-white flex flex-col justify-between">
             <Head>
                 <title>{props.title}</title>
-                <link rel="icon" href="/favicon.ico"/>
+                <link rel="icon" href="/assets/icon.png" media="(prefers-color-scheme: light)"/>
+                <link rel="icon" href="/assets/icon-dark.png" media="(prefers-color-scheme: dark)"/>
                 <GoogleAnalytics/>
             </Head>
             <div>

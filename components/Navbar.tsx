@@ -20,8 +20,8 @@ export const Navbar = () => {
 
     function search() {
         if (searchInput?.current.value === "") {
-            searchInput.current.focus();
             setSearchActive(x => !x);
+            searchInput.current.focus();
         } else {
             const searchContent = encodeURI(searchInput.current.value);
             searchInput.current.value = "";
@@ -30,34 +30,30 @@ export const Navbar = () => {
     }
 
     return <>
-        <div className="bg-black text-white font-bold p-4 text-center hidden">
-            Mit Ende Februar ist diese Seite nicht mehr aufrufbar. Viele Inhalte werden unter <a href="https://schoepfung.eni.wien" className="underline hover:no-underline">schoepfung.eni.wien</a> verfügbar sein.
-        </div>
         <div
-            className={`sticky top-0 w-full p-5 px-7 leading-4 flex flex-row justify-between items-center font-bold print:hidden z-50 bg-primary-50 transition ${(floating ? 'shadow-lg' : '')} `}>
+            className={`sticky top-0 w-full p-5 flex flex-row justify-between items-center font-bold print:hidden z-50 bg-[#f9f9f9aa] backdrop-blur-md border-b border-transparent transition`}>
             <Link href="/">
                 <div className="relative z-20 text-primary-500 cursor-pointer">
-                    <div className="text-md text-secondary-default">ARGE</div>
-                    <div className="text-xl">Schöpfungsverantwortung</div>
+                    <img src="/assets/logo.svg" className="h-12"/>
                 </div>
             </Link>
             <Hamburger onClick={() => setOpenMobile(!openMobile)} open={openMobile}/>
-            <div className="hidden md:flex flex-row items-center text-primary-500 z-10 space-x-2">
+            <div className="hidden md:flex flex-row items-center z-10 space-x-2">
                 {items.map((item, index) => (
                     <Link href={item.page} key={item.page}>
                         <div
                             key={index}
-                            className="hover:bg-primary-500 hover:text-white p-3 rounded cursor-pointer"
+                            className="hover:bg-black/5 p-3 cursor-pointer rounded"
                         >
                             {item.label}
                         </div>
                     </Link>
                 ))}
-                <div className="p-3 hover:bg-white p-3 rounded-md cursor-pointer flex">
+                <div className="p-3 p-3 rounded-md cursor-pointer flex">
                     <input
                         ref={searchInput}
                         onKeyDown={(event) => {if (event.key === "Enter") search();}}
-                        className={`outline-none py-1 -my-2  rounded transition ${searchActive ? "w-44 px-3 border border-primary-default mr-3" : "w-0 px-0"}`}/>
+                        className={`outline-none py-1 -my-2 rounded transition ${searchActive ? "w-44 px-3 border-2 border-black mr-3" : "w-0 px-0"}`}/>
                     <div onClick={search}>
                         <img src="/assets/search.svg" className="w-5"/>
                     </div>
@@ -65,18 +61,18 @@ export const Navbar = () => {
             </div>
             <div
                 className={
-                    "bg-white absolute top-0 left-0 w-screen z-10 overflow-hidden box-border text-primary-500 text-4xl " +
+                    "bg-white absolute top-0 left-0 w-screen z-10 overflow-hidden box-border text-4xl " +
                     (openMobile ? "h-screen pt-32 px-8" : "h-0")
                 }
             >
                 <Link href="/">
-                    <div className={" text-primary-500 p-3"}>
+                    <div className={" p-3"}>
                         Startseite
                     </div>
                 </Link>
                 {items.map((item, index) => (
                     <Link href={item.page} key={index}>
-                        <div key={index} className={"text-primary-500 p-3"}>
+                        <div key={index} className={"p-3"}>
                             {item.label}
                         </div>
                     </Link>
@@ -91,20 +87,20 @@ const Hamburger = ({onClick, open}) => {
         <div className="md:hidden cursor-pointer relative z-20" onClick={onClick}>
             <div
                 className={
-                    "relative w-6 h-1  transform bg-primary-500 " +
+                    "relative w-6 h-1  transform bg-black " +
                     (open ? "rotate-45 top-2" : "top-0 rotate-0")
                 }
             />
             <div className={"relative w-6 h-1"}/>
             <div
                 className={
-                    "relative w-6 h-1 bg-primary-500 " + (open ? "opacity-0" : "")
+                    "relative w-6 h-1 bg-black " + (open ? "opacity-0" : "")
                 }
             />
             <div className={"relative w-6 h-1"}/>
             <div
                 className={
-                    "relative w-6 h-1 transform bg-primary-500 " +
+                    "relative w-6 h-1 transform bg-black " +
                     (open ? "-rotate-45 -top-2" : "rotate-0 top-0")
                 }
             />

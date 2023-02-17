@@ -14,7 +14,7 @@ export function ExtendedLayout(props: { crums: Crum[], title: string, files: any
                 <div/>
                 <div className="my-10">
                     <Breadcrums crums={props.crums}/>
-                    <div className="text-5xl font-bold text-primary-500">{props.title}</div>
+                    <div className="text-6xl font-bold">{props.title}</div>
                 </div>
                 <div/>
                 <div className="hidden lg:block">
@@ -43,7 +43,7 @@ function SubsiteContainer(props: { subsites: any[] }) {
                 {props.subsites.sort((a, b) => a.priority - b.priority).map(child =>
                     <Link href={`${router.asPath}/${child.slug}`} key={child.slug}>
                         <div
-                            className="cursor-pointer underline hover:no-underline text-secondary-default my-2">
+                            className="cursor-pointer underline hover:no-underline  my-2">
                             {child.title}
                         </div>
                     </Link>
@@ -59,7 +59,7 @@ function FileContainer(props: { files: any[], cockpitHost: string }) {
                 {props.files?.map(({value}) => value?.path ?
                     <Link href={`${props.cockpitHost}/storage/uploads${value?.path}`} key={value?.path}>
                         <div
-                            className="cursor-pointer underline hover:no-underline text-secondary-default my-2">{value?.title}</div>
+                            className="cursor-pointer underline hover:no-underline my-2">{value?.title}</div>
                     </Link> : <div>Leerer Download</div>)}
             </Container>}
     </>;

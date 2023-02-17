@@ -35,7 +35,7 @@ const mapChildren = (children) => {
         {({ ref, open }) => (
           <>
           { /* @ts-ignore */ }
-          <img ref={ref} onClick={open} src={source} className="rounded border-primary-500 border m-2 inline-block h-32 cursor-pointer"  />
+          <img ref={ref} onClick={open} src={source} className="rounded my-2 inline-block h-32 cursor-pointer"  />
           </>
         )}
       </Item>)}
@@ -83,9 +83,9 @@ const renderer = {
     }
     if(src.match("[^\|]*#([^\|]*)")){
       const parts = src.split('#');
-      return <a href={parts[1]}><img className="rounded border-primary-500 border m-2 w-full" src={parts[0]} style={{ maxWidth: `${size}rem` }}/></a>;
+      return <a href={parts[1]}><img className="rounded  my-2 w-full" src={parts[0]} style={{ maxWidth: `${size}rem` }}/></a>;
     }
-    return <img className="rounded border-primary-500 border m-2 w-full" src={src} style={{ maxWidth: `${size}rem` }}/>;
+    return <img className="rounded  my-2 w-full" src={src} style={{ maxWidth: `${size}rem` }}/>;
   },
   paragraph: value => (
     <div className="py-2" children={value.children} />),

@@ -6,7 +6,7 @@ import Link from 'next/link';
 
 export default function Newsletter({article, newsletters}) {
   return <Site title="Newsletter">
-    <div className="text-5xl font-bold mb-6 text-primary-500">Newsletter</div>
+    <div className="text-5xl font-bold mb-6">Newsletter</div>
     <Markdown children={article.content}/>
     <iframe className="mj-w-res-iframe" frameBorder="0" scrolling="no" src="https://app.mailjet.com/widget/iframe/6CzS/K8x" width="100%" height="400px"/>
     <div>
