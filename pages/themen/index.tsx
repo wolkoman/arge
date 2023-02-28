@@ -5,8 +5,8 @@ import {cockpitHost, fetchCollection} from '../../util/cockpit';
 import {encodeSlug} from '../../util/slug';
 
 export default function Index({topics, cockpitHost}) {
-  return <Site title="Themen">
-    <div className="text-5xl font-bold mb-12">Themen</div>
+  return <Site title="Nachschlagewerk">
+    <div className="text-5xl font-bold mb-12">Nachschlagewerk</div>
     <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
       {topics.map(topic =>
         <Link href={`themen/${encodeSlug(topic.title)}`} key={topic._id}>

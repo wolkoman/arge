@@ -5,28 +5,26 @@ import Link from 'next/link';
 import React from 'react';
 import Markdown from './Markdown';
 import {Responsive} from "./Responsive";
+import {cockpitHost} from "../util/cockpit";
 
 
-export function ExtendedLayout(props: { crums: Crum[], title: string, files: any[], subsites: any[], content, cockpitHost: string }) {
+export function ExtendedLayout(props: { crums: Crum[], title: string, files: any[], subsites: any[], content }) {
     return <Site title={props.title} responsive={false}>
         <Responsive wide={true}>
-            <div className="grid lg:grid-cols-[260px_1fr_260px] gap-4 max-w-full">
+            <div className="flex flex-col gap-4 max-w-2xl mx-auto">
                 <div/>
                 <div className="my-10">
                     <Breadcrums crums={props.crums}/>
                     <div className="text-6xl font-bold">{props.title}</div>
                 </div>
                 <div/>
-                <div className="hidden lg:block">
-                    <SubsiteContainer subsites={props.subsites}/>
-                </div>
                 <div>
                     <Markdown children={props.content}/>
                 </div>
                 <div>
-                    <FileContainer files={props.files} cockpitHost={props.cockpitHost}/>
+                    <FileContainer files={props.files} cockpitHost={cockpitHost}/>
                 </div>
-                <div className="lg:hidden">
+                <div className="">
                     <SubsiteContainer subsites={props.subsites}/>
                 </div>
             </div>

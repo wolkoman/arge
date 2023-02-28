@@ -7,7 +7,7 @@ import {encodeSlug} from '../util/slug';
 import {getCategoryUrl} from '../components/HierachyArticles';
 import Markdown from '../components/Markdown';
 
-export default function Home({articles, topics, news, quote}) {
+export default function Home({articles, topics, news}) {
     return (
         <Site responsive={false} title="Plattform Schöpfungsverantwortung">
             <Title/>
@@ -17,14 +17,14 @@ export default function Home({articles, topics, news, quote}) {
                         <div className="flex flex-col md:flex-row gap-8 justify-between p-6">
                             <div className="shrink-0">
                                 <div className="text-4xl pt-2 font-bold">Aktuelles</div>
-                                <div className="text-2xl pb-6 text-primary-500">{quote.text}</div>
                             </div>
                             <div>
                                 {news.map(n => <NewsArticle key={n._id} news={n}/>)}
                             </div>
                         </div>
                     </div>
-                    <Articles articles={articles} topics={topics} news={news} quote={quote}/>
+                    <Articles articles={articles} topics={topics}/>
+
                 </Responsive>
             </div>
         </Site>
@@ -35,7 +35,7 @@ const NewsArticle = ({news}) => {
     return <div className="my-2">
         <Link href={`/news/${news._id}`}>
             <div
-                className="cursor-pointer border border-primary-500 hover:bg-primary-50 rounded-lg px-3 py-1">
+                className="cursor-pointer border border-black text-lg hover:bg-primary-50 rounded-lg px-3 py-1">
                 {news.title}
             </div>
         </Link>
@@ -48,13 +48,12 @@ export async function getStaticProps() {
             news: (await fetchCollection('news', {'sort[_created]': '-1', 'filter[active]': '1'})),
             articles: await fetchCollection('article'),
             topics: await fetchCollection('topics'),
-            quote: await fetchSingleton('quote')
         },
-        revalidate: 1
+        revalidate: 10
     };
 }
 
-function Articles({articles, topics, news, quote}) {
+function Articles({articles, topics}) {
     return <div className="grid md:grid-cols-2 gap-10 mb-12">
         {articles.map(entry => {
             const link = entry.content[0].field?.name === 'content'
@@ -77,6 +76,11 @@ function Articles({articles, topics, news, quote}) {
                 </Link>
             );
         })}
+
+        {/* @ts-ignore */}
+        <iframe allowpaymentrequest="true" className="flex-shrink-0 pr-8" src="https://donorbox.org/embed/arge-schopfungsverantwortung?default_interval=o&hide_donation_meter=true"
+                name="donorbox" frameBorder="0" scrolling="no"
+                height="600px" width="100%" style={{maxWidth: 400, minWidth: 250, maxHeight: 'none!important'}}/>
     </div>;
 }
 

@@ -4,7 +4,7 @@ import {encodeSlug} from '../util/slug';
 import {ExtendedLayout} from './ExtendedLayout';
 
 const system = (collectionName: string, url: string, displayName: string) => ({
-    component: ({cockpitHost, item, children, parents}) => <ExtendedLayout
+    component: ({item, children, parents}) => <ExtendedLayout
         crums={[{name: displayName, link: `/${url}`},
             ...parents.map(({name, segments}) => ({
                 name,
@@ -14,7 +14,6 @@ const system = (collectionName: string, url: string, displayName: string) => ({
         files={item.files}
         subsites={children}
         content={item.content}
-        cockpitHost={cockpitHost}
     />,
     paths: async () => {
         const items = (await fetchCollection(collectionName));
@@ -39,7 +38,7 @@ const system = (collectionName: string, url: string, displayName: string) => ({
             if (movingItem === undefined) break;
             parents.unshift({name: movingItem.title, segments: getCategoryUrl(movingItem, items)})
         }
-        return {props: {cockpitHost, item, children, parents}, revalidate: 1}
+        return {props: {item, children, parents}, revalidate: 1}
     }
 });
 

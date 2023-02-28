@@ -9,9 +9,9 @@ export const Navbar = () => {
     const [floating, setFloating] = useState(false);
     const items = [
         {label: "Über uns", page: "/ueber-uns/ueber-uns"},
-        {label: "Themen", page: "/themen"},
-        {label: "Newsletter", page: "/newsletter"},
-        {label: "Spenden", page: "/spenden"},
+        {label: "Schöpfungszeit", page: "/themen/schoepfungszeit"},
+        {label: "SDGs", page: "/themen/sdgs---konziliare-prozess---laudato-si"},
+        {label: "Nachschlagewerk", page: "/themen"},
     ];
 
     useScrollPosition(({currPos}) => {

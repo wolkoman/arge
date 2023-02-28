@@ -6,7 +6,7 @@ import 'photoswipe/dist/default-skin/default-skin.css'
 import Link from "next/link";
 
 export default function Markdown({children}) {
-  return <>{ReactMarkdown({renderers: renderer, children, allowDangerousHtml: true}).props.children.map(mapObject)}</>;
+  return <div className="text-lg">{ReactMarkdown({renderers: renderer, children, allowDangerousHtml: true}).props.children.map(mapObject)}</div>;
 }
 
 const mapObject = (object) => {
@@ -109,6 +109,6 @@ const renderer = {
   list: value => value.ordered ? <ol className="list-decimal pl-6 my-2">{value.children}</ol> : <ul className="list-disc pl-6 my-2">{value.children}</ul>,
   heading: args => {
     return (
-      <div className={["", "text-xl mt-1 mb-2","text-lg mt-1 mb-2 underline"][args.level]} children={args.children}/>);
+      <div className={["", "text-3xl mt-4 mb-8","text-xl mt-2 mb-4 underline"][args.level]} children={args.children}/>);
   },
 }

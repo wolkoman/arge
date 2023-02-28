@@ -10,7 +10,7 @@ export default function Spenden({results, searchTerm}) {
     return <Site title="Spenden">
         <div className="my-4">
             <div className="text-xl">Sucherergebnisse für</div>
-            <div className="text-4xl tracking-wider text-secondary-default font-bold">{searchTerm}</div>
+            <div className="text-4xl tracking-wider text-primary-default font-bold">{searchTerm}</div>
         </div>
         <div className="flex flex-col space-y-4">
         {results.map(result => <Link href={result.url} key={result.url}><div className="bg-white rounded-lg px-6 py-3 cursor-pointer">
