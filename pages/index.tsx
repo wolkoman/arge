@@ -6,6 +6,7 @@ import {cockpitHost, fetchCollection, fetchSingleton} from '../util/cockpit';
 import {encodeSlug} from '../util/slug';
 import {getCategoryUrl} from '../components/HierachyArticles';
 import Markdown from '../components/Markdown';
+import {act} from "react-dom/test-utils";
 
 export default function Home({articles, topics, news}) {
     return (
@@ -43,9 +44,23 @@ const NewsArticle = ({news}) => {
 }
 
 export async function getStaticProps() {
+    const news = await fetchCollection('news', {'sort[_created]': '-1', 'filter[active]': '1'});
+    const activeSegment = [
+        {date: "01.01", name: "christmas"},
+        {date: "06.01", name: "general"},
+        {date: "28.02", name: "fast"},
+        {date: "06.04", name: "easter"},
+        {date: "28.05", name: "summer"},
+        {date: "01.08", name: "creation"},
+        {date: "05.09", name: "general"},
+        {date: "25.11", name: "christmas"},
+    ].reverse().find(({date, name}) =>
+        new Date() > new Date(new Date().getFullYear() + "-" + date.split(".").reverse().join("-"))
+    ).name;
+    const segmentNews = news.filter(n => n.segment === activeSegment);
     return {
         props: {
-            news: (await fetchCollection('news', {'sort[_created]': '-1', 'filter[active]': '1'})),
+            news: segmentNews,
             articles: await fetchCollection('article'),
             topics: await fetchCollection('topics'),
         },
@@ -85,9 +100,9 @@ function Articles({articles, topics}) {
 }
 
 const Title = () => (
-    <div className="max-w-6xl w-full mx-auto my-24 bg-[url(/assets/hero.jpg)] bg-cover bg-center text-white px-6 py-20 lg:pt-52 lg:px-28 rounded-lg">
+    <div className="max-w-6xl w-full mx-auto my-24 bg-[url(/assets/hero.jpg)] bg-cover bg-center px-6 py-20 lg:pt-52 lg:px-28 shadow-lg rounded-lg">
                 <div className="text-3xl ">Glaube und Naturwissenschaft Hand in Hand </div>
-                <div className="text-6xl font-bold">für eine nachhaltige Zukunft</div>
+                <div className="text-6xl font-bold text-primary-default">für eine nachhaltige Zukunft</div>
     </div>
 );
 
