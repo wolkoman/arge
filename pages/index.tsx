@@ -64,7 +64,7 @@ export async function getStaticProps() {
             articles: await fetchCollection('article'),
             topics: await fetchCollection('topics'),
         },
-        revalidate: 10
+        revalidate: 30
     };
 }
 
