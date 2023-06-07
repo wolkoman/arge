@@ -2,11 +2,10 @@ import Link from 'next/link';
 import React from 'react';
 import {Responsive} from '../components/Responsive';
 import {Site} from '../components/Site';
-import {cockpitHost, fetchCollection, fetchSingleton} from '../util/cockpit';
+import {cockpitHost, fetchCollection} from '../util/cockpit';
 import {encodeSlug} from '../util/slug';
 import {getCategoryUrl} from '../components/HierachyArticles';
 import Markdown from '../components/Markdown';
-import {act} from "react-dom/test-utils";
 
 export default function Home({articles, topics, news}) {
     return (
@@ -61,7 +60,7 @@ export async function getStaticProps() {
     return {
         props: {
             news: segmentNews,
-            articles: await fetchCollection('article'),
+            articles: await fetchCollection('article', {'sort[_o]': '-1'}),
             topics: await fetchCollection('topics'),
         },
         revalidate: 30

@@ -81,11 +81,14 @@ const renderer = {
     if(src.match("size=(\d*)")) {
       size = src.split("size=")[1];
     }
+    if(src.match("size=full")) {
+      size = null;
+    }
     if(src.match("[^\|]*#([^\|]*)")){
       const parts = src.split('#');
-      return <a href={parts[1]}><img className="rounded  my-2 w-full" src={parts[0]} style={{ maxWidth: `${size}rem` }}/></a>;
+      return <a href={parts[1]}><img className="rounded  my-2 w-full" src={parts[0]} style={size ? { maxWidth: `${size}rem` } : {}}/></a>;
     }
-    return <img className="rounded  my-2 w-full" src={src} style={{ maxWidth: `${size}rem` }}/>;
+    return <img className="rounded  my-2 w-full" src={src} style={size ? { maxWidth: `${size}rem` } : {}}/>;
   },
   paragraph: value => (
     <div className="py-2" children={value.children} />),
