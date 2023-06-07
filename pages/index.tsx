@@ -14,7 +14,7 @@ export default function Home({articles, topics, news}) {
             <Title/>
             <div className="relative z-20">
                 <Responsive>
-                    <div className="bg-white rounded-lg shadow my-24">
+                    {news.length > 0 && <div className="bg-white rounded-lg shadow my-24">
                         <div className="flex flex-col md:flex-row gap-8 justify-between p-6">
                             <div className="shrink-0">
                                 <div className="text-4xl pt-2 font-bold">Aktuelles</div>
@@ -23,7 +23,7 @@ export default function Home({articles, topics, news}) {
                                 {news.map(n => <NewsArticle key={n._id} news={n}/>)}
                             </div>
                         </div>
-                    </div>
+                    </div>}
                     <Articles articles={articles} topics={topics}/>
 
                 </Responsive>
