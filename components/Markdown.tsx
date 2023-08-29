@@ -112,6 +112,6 @@ const renderer = {
   list: value => value.ordered ? <ol className="list-decimal pl-6 my-2">{value.children}</ol> : <ul className="list-disc pl-6 my-2">{value.children}</ul>,
   heading: args => {
     return (
-      <div className={["", "text-3xl mt-4 mb-8","text-xl mt-2 mb-4 underline"][args.level]} children={args.children}/>);
+      <div className={["", "text-4xl mt-4 mb-8","text-2xl mt-4 mb-1 underline"][args.level]} children={args.children}/>);
   },
 }

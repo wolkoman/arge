@@ -56,8 +56,8 @@ function FileContainer(props: { files: any[], cockpitHost: string }) {
             <Container title="Downloads">
                 {props.files?.map(({value}) => value?.path ?
                     <Link href={`${props.cockpitHost}/storage/uploads${value?.path}`} key={value?.path}>
-                        <div
-                            className="cursor-pointer underline hover:no-underline my-2">{value?.title}</div>
+                        <a
+                            className="block cursor-pointer underline hover:no-underline my-2">{value?.title}</a>
                     </Link> : <div>Leerer Download</div>)}
             </Container>}
     </>;

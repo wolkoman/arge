@@ -33,11 +33,11 @@ export default function Home({articles, topics, news}) {
 
 const NewsArticle = ({news}) => {
     return <div className="my-2">
-        <Link href={`/news/${news._id}`}>
-            <div
-                className="cursor-pointer border border-black text-lg hover:bg-primary-50 rounded-lg px-3 py-1">
+        <Link href={news.link ? news.link : `/news/${news._id}`}>
+            <a
+                className="block cursor-pointer border border-black text-lg hover:bg-primary-50 rounded-lg px-3 py-1">
                 {news.title}
-            </div>
+            </a>
         </Link>
     </div>;
 }
@@ -60,7 +60,9 @@ export async function getStaticProps() {
     return {
         props: {
             news: segmentNews,
-            articles: await fetchCollection('article', {'sort[_o]': '-1'}),
+            articles: await fetchCollection('article', {'filter[hidden]': '0'}).then(articles =>
+                articles.map(a => ({...a, priority: ["Veranstaltungskalender Schöpfungszeit 2023","Liturgie in der Schöpfungszeit", "Schöpfungszeit"].indexOf(a.title)}))
+            ),
             topics: await fetchCollection('topics'),
         },
         revalidate: 30
@@ -68,8 +70,9 @@ export async function getStaticProps() {
 }
 
 function Articles({articles, topics}) {
+    console.log(articles)
     return <div className="grid md:grid-cols-2 gap-10 mb-12">
-        {articles.map(entry => {
+        {articles.sort((b,a) => a.priority - b.priority).map(entry => {
             const link = entry.content[0].field?.name === 'content'
                 ? `/artikel/${encodeSlug(entry.title)}`
                 : `/themen/${getCategoryUrl(topics.find(t => t._id === entry.content[0].value._id), topics).join('/')}`;
