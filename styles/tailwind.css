@@ -8,3 +8,8 @@ body {
   font-family: "Titillium Web", sans-serif;
   background: #f9f9f9;
 }
+.stroke-1{
+}
+.stroke-2{
+  -webkit-text-stroke: 2px rgba(255,255,255,1);
+}

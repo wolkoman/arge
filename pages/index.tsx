@@ -61,7 +61,7 @@ export async function getStaticProps() {
         props: {
             news: segmentNews,
             articles: await fetchCollection('article', {'filter[hidden]': '0'}).then(articles =>
-                articles.map(a => ({...a, priority: ["Veranstaltungskalender Schöpfungszeit 2023","Liturgie in der Schöpfungszeit", "Schöpfungszeit"].indexOf(a.title)}))
+                articles.map(a => ({...a, priority: ["Enzyklika von Bartholomäus zur Schöpfungszeit","Liturgie in der Schöpfungszeit", "Schöpfungszeit"].indexOf(a.title)}))
             ),
             topics: await fetchCollection('topics'),
         },
@@ -97,14 +97,20 @@ function Articles({articles, topics}) {
         {/* @ts-ignore */}
         <iframe allowpaymentrequest="true" className="flex-shrink-0 pr-8" src="https://donorbox.org/embed/arge-schopfungsverantwortung?default_interval=o&hide_donation_meter=true"
                 name="donorbox" frameBorder="0" scrolling="no"
-                height="600px" width="100%" style={{maxWidth: 400, minWidth: 250, maxHeight: 'none!important'}}/>
+                height="600px" width="100%" style={{maxWidth: 400, minWidth: 250, maxHeight: 'none!important',filter: "hue-rotate(267deg)"}}/>
     </div>;
 }
 
 const Title = () => (
     <div className="max-w-6xl w-full mx-auto my-24 bg-[url(/assets/hero.jpg)] bg-cover bg-center px-6 py-20 lg:pt-52 lg:px-28 shadow-lg rounded-lg">
-                <div className="text-3xl ">Glaube und Naturwissenschaft Hand in Hand </div>
-                <div className="text-6xl font-bold text-primary-default">für eine nachhaltige Zukunft</div>
+                <div className="text-3xl relative text-white">
+                    <div className="stroke-1">Glaube und Wissenschaft Hand in Hand</div>
+                    <div className="absolute inset-0 z-10">Glaube und Wissenschaft Hand in Hand</div>
+                </div>
+                <div className="text-6xl font-bold text-primary-default relative">
+                    <div className="stroke-2">für eine nachhaltige Zukunft</div>
+                    <div className="absolute inset-0 z-10">für eine nachhaltige Zukunft</div>
+                </div>
     </div>
 );
 
