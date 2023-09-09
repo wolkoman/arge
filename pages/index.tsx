@@ -51,7 +51,7 @@ export async function getStaticProps() {
         {date: "06.04", name: "easter"},
         {date: "28.05", name: "summer"},
         {date: "01.08", name: "creation"},
-        {date: "05.09", name: "general"},
+        {date: "05.10", name: "general"},
         {date: "25.11", name: "christmas"},
     ].reverse().find(({date, name}) =>
         new Date() > new Date(new Date().getFullYear() + "-" + date.split(".").reverse().join("-"))
