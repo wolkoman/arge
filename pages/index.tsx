@@ -6,6 +6,7 @@ import {cockpitHost, fetchCollection} from '../util/cockpit';
 import {encodeSlug} from '../util/slug';
 import {getCategoryUrl} from '../components/HierachyArticles';
 import Markdown from '../components/Markdown';
+import {manualArticles} from "./artikel/[slug]";
 
 export default function Home({articles, topics, news}) {
     return (
@@ -57,12 +58,13 @@ export async function getStaticProps() {
         new Date() > new Date(new Date().getFullYear() + "-" + date.split(".").reverse().join("-"))
     ).name;
     const segmentNews = news.filter(n => n.segment === activeSegment);
+    let articles = [...manualArticles, ...await fetchCollection('article', {'filter[hidden]': '0'}).then(articles =>
+        articles.map(a => ({...a, priority: ["Enzyklika von Bartholomäus zur Schöpfungszeit","Liturgie in der Schöpfungszeit", "Schöpfungszeit"].indexOf(a.title)}))
+    ), ];
     return {
         props: {
             news: segmentNews,
-            articles: await fetchCollection('article', {'filter[hidden]': '0'}).then(articles =>
-                articles.map(a => ({...a, priority: ["Enzyklika von Bartholomäus zur Schöpfungszeit","Liturgie in der Schöpfungszeit", "Schöpfungszeit"].indexOf(a.title)}))
-            ),
+            articles,
             topics: await fetchCollection('topics'),
         },
         revalidate: 30
