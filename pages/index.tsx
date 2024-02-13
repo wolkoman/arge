@@ -87,7 +87,6 @@ export async function getStaticProps() {
 function Articles({articles, topics}) {
     return <div className="grid md:grid-cols-2 gap-10 mb-12">
         {articles.sort((b,a) => a.priority - b.priority).map(entry => {
-            console.log(entry)
             const link = entry.content[0].field?.name === 'content'
                 ? `/artikel/${encodeSlug(entry.title)}`
                 : `/themen/${getCategoryUrl(topics.find(t => t._id === entry.content[0].value._id), topics).join('/')}`;
