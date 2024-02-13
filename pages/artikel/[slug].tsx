@@ -62,7 +62,7 @@ export const manualArticles = [
     title: "Handlungsfeld Ernährung und Landnutzung: Fleisch- und/oder Milchfasten",
     content: [{
       value: {
-        _id: "5063f98c336336c7aa000324",
+        _id: "508c9697333736044600018a",
         display: "Schöpfungszeit",
         link: "topics"
       }
