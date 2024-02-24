@@ -27,10 +27,11 @@ export default function Home() {
                   <div>Der Link zum Beitritt wird am Tag der Sitzung hier veröffentlicht:</div>
 
                 </div>
-                <div
-                  className="inline-block cursor-not-allowed px-4 py-2 opacity-50 bg-primary-500 text-white my-4 rounded-lg">Beitritt
-                  zum Online Meeting
+                <Link href="https://meet.jit.si/argegeneralversammlung24">
+                <div className="inline-block px-4 py-2 opacity-50 bg-primary-500 hover:bg-primary-400 text-white my-4 rounded-lg">
+                  Beitritt zum Online Meeting
                 </div>
+                </Link>
               </Responsive>
             </div>
         </Site>
