@@ -6,7 +6,6 @@ import {cockpitHost, fetchCollection} from '../util/cockpit';
 import {encodeSlug} from '../util/slug';
 import {getCategoryUrl} from '../components/HierachyArticles';
 import Markdown from '../components/Markdown';
-import {manualArticles} from "./artikel/[slug]";
 
 export default function Home({articles, topics, news}) {
 
@@ -25,15 +24,6 @@ export default function Home({articles, topics, news}) {
                             </div>
                         </div>
                     </div>}
-
-                    <div className="bg-white p-4 lg:p-8 flex flex-col gap-3 rounded-lg shadow mb-10 text-lg">
-                        <div className="font-bold text-2xl">Die Fastenzeit nutzen um den Lebensstil zu ändern</div>
-                        Viele Menschen reduzieren in der Fastenzeit Alkoholkonsum, Kaffee, Süßigkeiten oder verzichten auf Schokolade. Lebensmittelverschwendung hat enorme Auswirkungen auf unsere Umwelt und das Klima. Die Fastenzeit dauert 2024 vom 14. Februar bis 30. März. Das sind 40 Wochentage, denn die Sonntage sind in der katholischen Tradition keine Fasttage. Nachhaltiges Fasten bedeutet, die 40 Wochentage der Fastenzeit zu nutzen, um Neues auszuprobieren. Nutzen Sie die Zeit, Scheu vor Veränderungen abzulegen. Was sich bewährt, können Sie auch über die Fastenzeit hinaus beibehalten.
-
-                        Die Anregungen der Plattform Schöpfungsverantwortung für nachhaltiges Fasten greifen in diesem Jahr die fünf Handlungsfelder des Klimarats auf. Der österreichische Klimarat wurde im Auftrag des Nationalrats eingesetzt. Er erarbeitete Empfehlungen für ein klimaneutrales Österreich 2040. Das komplexe Thema des Klimaschutzes wurde in fünf Handlungsfelder gegliedert: Energie, Produktion/ Konsum, Ernährung/Landnutzung, Mobilität, Wohnen.
-
-
-                    </div>
 
                     <Articles articles={articles} topics={topics}/>
 
@@ -69,14 +59,14 @@ export async function getStaticProps() {
         new Date() > new Date(new Date().getFullYear() + "-" + date.split(".").reverse().join("-"))
     ).name;
     const segmentNews = news.filter(n => n.segment === activeSegment);
-    let articles = [...manualArticles, ...await fetchCollection('article', {'filter[hidden]': '0'}).then(articles =>
+    let articles = await fetchCollection('article', {'filter[hidden]': '0'}).then(articles =>
         articles
           .filter(a => a._id !== "d1a05bd16631398316000321")
           .map(a => ({...a, priority: ["Mit den SDGs den Wandel mitgestalten"].indexOf(a.title)}))
-    ), ];
+    );
     return {
         props: {
-            news: segmentNews,
+            news,
             articles,
             topics: await fetchCollection('topics'),
         },
