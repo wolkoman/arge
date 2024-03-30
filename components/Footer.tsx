@@ -7,7 +7,7 @@ export const Footer = ({}) => {
             <div className="flex-1 py-8">
                 <div className="font-bold text-lg text-primary-500">Kontakt</div>
                 <b>Arbeitsgemeinschaft Schöpfungsverantwortung</b><br/>
-                Tesarekplatz 2, 1100 Wien<br/>
+                Hetzendorferstrasse 114/3, 1120 Wien<br/>
                 Email: office@argeschoepfung.at <br/>
                 IBAN: AT12 2011 1292 5730 9601 <br/>
                 Instagram: <a href="https://www.instagram.com/argeschoepfung/">@argeschoepfung</a>
